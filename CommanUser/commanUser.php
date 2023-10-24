@@ -94,7 +94,7 @@ $conn1->close();
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="./bookedTickets.php">
+                            <a class="nav-link" aria-current="page" href="./bookedTickets.php?var3=<?php echo $nextID; ?>">
                                 <p class="NAVLINKS FIRST-NAVLINK">
                                     Booked Tickets
                                 </p>

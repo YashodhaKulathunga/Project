@@ -1,5 +1,6 @@
 <?php
 $userID = $_GET['var3'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
