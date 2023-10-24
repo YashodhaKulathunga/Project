@@ -1,0 +1,127 @@
+body {
+  background-color: #f3c001;
+  font-family: "Montserrat", "Helvetica Neue", "Open Sans", "Arial";
+  font-weight: 300;
+  padding: 20%;
+}
+.container-fluid {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  width: 100%;
+}
+.ticket {
+  border-radius: 4px;
+  display: inline-block;
+  max-width: 320px;
+  text-align: left;
+  text-transform: uppercase;
+  width: 100%;
+  margin-left: 5rem;
+}
+.ticket.dark {
+  background-color: #161616;
+  color: white;
+}
+.ticket.light {
+  background-color: white;
+  color: #161616;
+}
+.ticket.light .ticket-body {
+  border-color: #161616;
+}
+.ticket-head {
+  background-position: center;
+  background-size: cover;
+  border-radius: 4px 4px 0 0;
+  color: white;
+  height: 140px;
+  position: relative;
+}
+.ticket-head .from-to {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  font-size: 24px;
+  font-weight: 600;
+  width: 100%;
+  z-index: 2;
+}
+.ticket-head .icon {
+  display: inline-block;
+  margin: 0 40px;
+  transform: rotate(135deg) translate(25%, 25%);
+}
+.ticket-body {
+  border-bottom: 1px dashed white;
+  padding: 15px 45px;
+  position: relative;
+  margin-left: 30%;
+}
+.ticket-body p {
+  color: #a2a2a2;
+  font-size: 12px;
+  align-items: center;
+  justify-content: center;
+}
+.ticket-body .flight-info {
+  margin-top: 15px;
+}
+.ticket-body .flight-date {
+  font-size: 12px;
+  margin-top: 15px;
+}
+.ticket-body:before,
+.ticket-body:after {
+  background-color: #ffb563;
+  border-radius: 100%;
+  content: "";
+  height: 15px;
+  position: absolute;
+  top: 100%;
+  width: 20px;
+}
+.ticket-body:before {
+  left: 0;
+  transform: translate(-70%, -45%);
+}
+.ticket-body:after {
+  right: 0;
+  transform: translate(70%, -45%);
+}
+
+.disclaimer {
+  color: #a2a2a2;
+  font-family: "IM Fell French Canon";
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.25;
+  padding: 15px 25px;
+  text-transform: none;
+}
+.layer {
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 4px 4px 0 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
