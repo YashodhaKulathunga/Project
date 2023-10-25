@@ -85,7 +85,7 @@
                 <div class="col-md-4">
                     <div class="card shadow text-center custom-card">
                         <div class="card-body">
-                            <img src="images/journey pic/updatesituation.jpg"alt="Image" class="card-image" style="width: 130px;">
+                            <img src="images/journey pic/journey.jpg"alt="Image" class="card-image" style="width: 130px;">
                             <h5 class="card-title">Update Situations</h5>
                             <p class="card-text">Update Situations here.</p>
                             <a href="#" class="btn btn-primary">Go to Update Situations</a>
@@ -105,10 +105,10 @@
                 <div class="col-md-4">
                     <div class="card shadow text-center custom-card">
                         <div class="card-body">
-                            <img src="images/journey pic/journey.jpg"alt="Image" class="card-image" style="width: 130px;">
-                            <h5 class="card-title">Update Journey Details</h5>
-                            <p class="card-text">Update Journey Details here.</p>
-                            <a href="Fuel.php" class="btn btn-primary">Go to Update Journey Details</a>
+                            <img src="images/journey pic/updatesituation.jpg"alt="Image" class="card-image" style="width: 130px;">
+                            <h5 class="card-title">Update Expences Details</h5>
+                            <p class="card-text">Update Expences Details here.</p>
+                            <a href="Fuel.php" class="btn btn-primary">Update Expences Details</a>
                         </div>
                     </div>
                 </div>
