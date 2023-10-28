@@ -9,13 +9,16 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #f3c001;
+  background-image: url(../Images/interfacebg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .container {
   position: relative;
   width: 70vw;
   height: 80vh;
-  background: #fff;
+  background: #f3c001;
   border-radius: 15px;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
   overflow: hidden;
@@ -100,6 +103,30 @@ form.sign-up-form {
   border-radius: 50px;
   background: #f3c001;
   color: #fff;
+  font-weight: 600;
+  margin: 10px 0;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btn1 {
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  background: #000032;
+  color: #fff;
+  font-weight: 600;
+  margin: 10px 0;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btn1:hover {
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  background: #000032;
+  color: #f3c001;
   font-weight: 600;
   margin: 10px 0;
   text-transform: uppercase;

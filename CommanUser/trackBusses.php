@@ -13,7 +13,6 @@ if ($conn->connect_error) {
     echo ("Connection failed: " . $conn->connect_error);
 }
 $sql = "SELECT * FROM ticket_reservation WHERE UserID = '$userID'";
-
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {
@@ -34,6 +33,9 @@ if (!$result) {
     <script src="./js/index.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .seat {
             position: relative;
@@ -63,6 +65,39 @@ if (!$result) {
 </head>
 
 <body>
+    <script>
+        function getUserLocation() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+
+                    // Send the location data to the server using AJAX
+                    $.ajax({
+                        type: "POST",
+                        url: "updateLocation.php",
+                        data: {
+                            latitude: latitude,
+                            longitude: longitude
+                        },
+                        success: function(response) {
+                            console.log("Location updated successfully.");
+                        },
+                        error: function() {
+                            console.error("Error updating location.");
+                        }
+                    });
+                });
+            }
+        }
+
+        // Call getUserLocation every 10 seconds
+        setInterval(getUserLocation, 10000);
+    </script>
+    <?php 
+    
+    ?>
+
     <!--Nav bar start-->
     <div class="fixed-top">
         <nav class="navbar navbar-expand-lg NAVBAR">
@@ -89,14 +124,14 @@ if (!$result) {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="./bookedTickets.php">
-                                <p class="NAVLINKSACTIVE FIRST-NAVLINK">
+                                <p class="NAVLINKS FIRST-NAVLINK">
                                     Booked Tickets
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="./trackBusses.php">
-                                <p class="NAVLINKS FIRST-NAVLINK">
+                                <p class="NAVLINKSACTIVE FIRST-NAVLINK">
                                     Track Busses
                                 </p>
                             </a>
@@ -121,53 +156,108 @@ if (!$result) {
         </nav>
     </div>
     <!---Nav bar End-->
-    <div class="container px-2 pv-2 h-screen items-center w-screen booked-Tickets-Table">
-        <div class="flex flex-center text-center text-white heading mb-2">
-            <h1 style="color: #000032;">Your booked Seats</h1>
+    <div class="accordion-for-trackBus">
+        <div class="accordion" id="accordionExample">
+            <?php
+            $i = 1;
+            while ($row = mysqli_fetch_assoc($result)) {
+                $tid = $row['Ticket_ID'];
+                $sno = $row['SeatNO'];
+
+                echo $i;
+                echo '<div class="accordion-item">
+                       <h2 class="accordion-header">
+                         <button
+                           class="accordion-button collapsed"
+                           type="button"
+                           data-bs-toggle="collapse"
+                           data-bs-target="#col' . $i . '"
+                           aria-expanded="false"
+                           aria-controls="col' . $i . '"
+                         >
+                           <div class="row text-center" style="margin-left: 20%">
+                             <div class="col">
+                               <h6>Ticket Id : <strong>abcd1234</strong></h6>
+                             </div>
+                             <div class="col">
+                               <h6>Bus Route : <strong>Badulla - colombo</strong></h6>
+                             </div>
+                             <div class="col">
+                               <h6>Bus Register No : <strong>NP1234</strong></h6>
+                             </div>
+                             <div class="col">
+                               <h6>Arraival Time : <strong>11.35PM</strong></h6>
+                             </div>
+                           </div>
+                         </button>
+                       </h2>
+                       <div
+                         id="col' . $i . '"
+                         class="accordion-collapse collapse"
+                         data-bs-parent="#accordionExample"
+                       >
+                         <div class="accordion-body text-center">
+                         <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+                         <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+                 
+                         <script>
+                             var map = L.map("map").setView([6.987884, 81.057519], 11);
+                             mapLink = "<a href="http://openstreetmap.org">OpenStreetMap</a>";
+                             L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+                                 attribution: "Leaflet &copy; " + mapLink + ", contribution",
+                                 maxZoom: 18,
+                             }).addTo(map);
+                 
+                             var taxiIcon = L.icon({
+                                 iconUrl: "img/bus-svgrepo-com.svg",
+                                 iconSize: [70, 70],
+                             });
+                 
+                             var marker = L.marker([6.987884, 81.057519], {
+                                 icon: taxiIcon,
+                             }).addTo(map);
+                 
+                             map.on("click", function (e) {
+                                 console.log(e);
+                                 var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(
+                                     map
+                                 );
+                                 L.Routing.control({
+                                     waypoints: [
+                                         L.latLng(6.987884, 81.057519),
+                                         L.latLng(e.latlng.lat, e.latlng.lng),
+                                     ],
+                                 })
+                                     .on("routesfound", function (e) {
+                                         var routes = e.routes;
+                                         console.log(routes);
+                 
+                                         e.routes[0].coordinates.forEach(function (
+                                             coord,
+                                             index
+                                         ) {
+                                             setTimeout(function () {
+                                                 marker.setLatLng([coord.lat, coord.lng]);
+                                             }, 100 * index);
+                                         });
+                                     })
+                                     .addTo(map);
+                             });
+                         </script>
+                         </div>
+                       </div>
+                     </div>';
+                $i++;
+            }
+            mysqli_close($conn);
+            ?>
         </div>
-        <div class="text-center mt-4 table-for-tickets">
-            <table class="table text-center table-for-tickets">
-                <thead>
-                    <tr class="table-row-class">
-                        <th scope="col">Ticket ID</th>
-                        <th scope="col">Seat NO</th>
-                        <th scope="col">Download Ticket</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $tid = $row['Ticket_ID'];
-                        $sno = $row['SeatNO'];
-                        echo '<tr>';
-                        echo '<td>' . $row['Ticket_ID'] . '</td>';
-                        echo '<td>' . $row['SeatNO'] . '</td>';
-                        echo '<td>
-                        <div class="row">
-                        <div class="col text-center">
-                          <a href="ticket.php?var1=' . $tid . '&var2=' . $sno . '">
-                            <button
-                              type="submit"
-                              class="btn btn-lg btn-find-busses"
-                              data-bs-toggle="modal"
-                              data-bs-target="#staticBackdrop"
-                              id="button1"
-                            >
-                              Download Ticket
-                            </button>
-                          </a>                        
-                          <botton class="btn btn-lg btn-danger">Cancel</botton>
-                        </div>
-                      </div>
-                            </td>';
-                    }
-                    mysqli_close($conn);
-                    ?>
+    </div>
 
 
-                </tbody>
-            </table>
-        </div>
+    </tbody>
+    </table>
+    </div>
     </div>
     <!--Footer Start-->
     <footer class="border-top footerbackground">

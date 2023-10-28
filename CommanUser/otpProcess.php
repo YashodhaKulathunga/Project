@@ -1,5 +1,7 @@
 <?php
-$paymentID = $_GET['var2'];
+session_start();
+$paymentID = $_SESSION['payID'];
+echo $paymentID;
 
 $serverName = "localhost";
 $username = "root";
@@ -23,8 +25,11 @@ $userID = $row['User_ID'];
 $userOTP = $_POST['otp'];
 
 if ($otp == $userOTP) {
-    header("Location: generateTicket.php?var3=$userID");
+    header("Location: generateTicket.php");
 } else {
     $otpm = 2;
-    header("Location: varifyOTP.php?var1=$paymentID&var2=$otpm");
+
+    $_SESSION['otpm'] = $otpm;
+
+    header("Location: varifyOTP.php");
 }

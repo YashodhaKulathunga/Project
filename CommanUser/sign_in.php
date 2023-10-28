@@ -81,7 +81,7 @@
                     <i class="fas fa-lock"></i>
                     <input type="password" name="pwd" placeholder="Password">
                 </div>
-                <input type="submit" name="submit" value="Login" class="btn">
+                <input type="submit" name="submit" value="Login" class="btn1">
                 <p class="account-text">Don't have an account? <a href="#" id="sign-up-btn2">Sign up</a></p>
             </form>
             <form action="includes/sign_in.inc.php" method="POST" class="sign-up-form">
@@ -125,7 +125,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" name="submit" value="Sign up" class="btn">
+                <input type="submit" name="submit" value="Sign up" class="btn1">
                 <p class="account-text">Already have an account? <a href="#" id="sign-in-btn2">Sign in</a></p>
             </form>
         </div>

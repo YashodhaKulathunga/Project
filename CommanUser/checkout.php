@@ -1,5 +1,8 @@
 <?php
-$userID = $_GET['var'];
+session_start();
+$userID =  $_SESSION["userid"];
+
+
 $serverName = "localhost";
 $username = "root";
 $password = "";
@@ -55,8 +58,7 @@ $amount = 2000 * $count;
             </li>
           </ul>
           <div class="d-flex">
-            <ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon>
-
+            <a href="./SeatSelection.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
           </div>
         </div>
       </div>
@@ -77,7 +79,7 @@ $amount = 2000 * $count;
           <div class="text-center mb-4">
             <h3>Enter Your Email Address</h3>
           </div>
-          <form action="process_payment.php?var1=<?php echo $userID; ?>" method="POST">
+          <form action="process_payment.php" method="POST">
             <div class="form-outline mb-4">
               <input type="text" name="emailadd" class="form-control form-control-lg" placeholder="Email Address" />
             </div>

@@ -13,14 +13,16 @@ if (!$connection) {
 }
 ?>
 <?php
-if (isset($_GET['var'])) {
-    $SHID = $_GET['var'];
-    $userID = $_GET['var1'];
-    $bookedSeats = array();
-    $totalSeats = 54;
-    for ($i = 0; $i < $totalSeats; $i++) {
-        $bookedSeats[] = null;
-    }
+session_start();
+
+$SHID = $_SESSION['SHID'];
+$userID =  $_SESSION["userid"];
+
+
+$bookedSeats = array();
+$totalSeats = 54;
+for ($i = 0; $i < $totalSeats; $i++) {
+    $bookedSeats[] = null;
 }
 $query = "SELECT * FROM ticket_reservation WHERE Shedule_ID = '$SHID'";
 $result = mysqli_query($connection, $query);
@@ -144,8 +146,7 @@ if (mysqli_num_rows($result) > 0) {
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon>
-
+                        <a href="./commanUser.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
                     </div>
                 </div>
             </div>
@@ -400,7 +401,7 @@ if (mysqli_num_rows($result) > 0) {
                                 </div>
                                 <div>
                                     <p>Total Price: <span id="totalPrice">0</span></p>
-                                  
+
                                 </div>
                             </div>
                         </div>
@@ -445,7 +446,7 @@ if (mysqli_num_rows($result) > 0) {
 
 
                         <div class="checkout mt-3">
-                            <a href="checkout.php?var=<?php echo urlencode($userID); ?>"><button class="w-100 btn btn-lg btn-find-busses" onclick="test()"> Proceed to Checkout</button></a>
+                            <a href="checkout.php"><button class="w-100 btn btn-lg btn-find-busses" onclick="test()"> Proceed to Checkout</button></a>
 
                         </div>
                     </div>

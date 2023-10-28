@@ -1,5 +1,7 @@
 <?php
-$userID = $_GET['var1'];
+session_start();
+$userID =  $_SESSION["userid"];
+
 echo $userID;
 
 
@@ -68,7 +70,8 @@ if ($stmt) {
     $stmt->bind_param("ssssssssssss", $paymentID, $ticketID, $userID, $email, $cardName, $cardNumber, $expMonth, $expYear, $cvv, $amount, $otp, $status);
 
     if ($stmt->execute()) {
-        header("Location: varifyOTP.php?var1=$paymentID");
+        $_SESSION['payID'] = $paymentID;
+        header("Location: varifyOTP.php");
     } else {
         echo "Error: " . $stmt->error;
     }
