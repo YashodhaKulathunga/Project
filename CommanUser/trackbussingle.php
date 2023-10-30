@@ -1,16 +1,4 @@
 <?php
-$serverName = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db1";
-
-$conn1 = new mysqli($serverName, $username, $password, $dbname);
-
-// Check connection
-if ($conn1->connect_error) {
-    die("Connection failed: " . $conn1->connect_error);
-}
-
 session_start();
 
 ?>
@@ -21,7 +9,6 @@ session_start();
     <title>Geolocation</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
         body {
@@ -32,97 +19,113 @@ session_start();
 </head>
 
 <body>
-    <div id="map" style="width: 100%; height: 100vh"></div>
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+
     <script>
-        function getUserLocation() {
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
+        var map = null;
+        var busMarker = null;
+        var userMarker = null;
 
-                    // Send the location data to the server using AJAX
-                    $.ajax({
-                        type: "POST",
-                        url: "trackbussingle.php",
-                        data: {
-                            latitude: latitude,
-                            longitude: longitude
-                        },
-                        success: function(response) {
-                            console.log("Location updated successfully.");
-                        },
-                        error: function() {
-                            console.error("Error updating location.");
-                        }
-                    });
-                });
-            }
-        }
+        function getLocation() {
+            if (navigator.geolocation) {
+                var options = {
+                    enableHighAccuracy: true, // Request high accuracy
+                    maximumAge: 0 // Force fresh location data
+                };
 
-        // Call getUserLocation every 10 seconds
-        setInterval(getUserLocation, 10000);
-    </script>
-    <?php
-    $uid = $_SESSION["userid"];
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $latitude = $_POST['latitude'];
-        $longitude = $_POST['longitude'];
-        $sql1 = "UPDATE user SET Latitude = $latitude, 	Longitude = $longitude WHERE User_ID = '$uid'";
-        $stmt = $conn1->prepare($sql1);
-
-        if ($stmt) {
-            if ($stmt->execute()) {
-                $_SESSION['payID'] = $paymentID;
+                navigator.geolocation.getCurrentPosition(showPosition, handleError, options);
             } else {
-                echo "Error: " . $stmt->error;
+                console.log("Geolocation is not supported by this browser.");
             }
-
-            $stmt->close();
-        } else {
-            echo "Error: " . $conn->error;
         }
-    }
 
-    // Close the database connection
-    $conn->close();
-    ?>
+        function showPosition(position) {
+            var Latitude = position.coords.latitude;
+            var Longitude = position.coords.longitude;
+            console.log("Latitude: " + Latitude);
+            console.log("Longitude: " + Longitude);
+            document.cookie = `Latitude=${Latitude}`;
+            document.cookie = `Longitude=${Longitude}`;
 
-    <script>
-        var map = L.map("map").setView([6.987884, 81.057519], 10);
-        mapLink = "<a href='http://openstreetmap.org'>OpenStreetMap</a>";
-        L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-            attribution: "Leaflet &copy; " + mapLink + ", contribution",
-            maxZoom: 18,
-        }).addTo(map);
+            if (map === null) {
+                createMap(Latitude, Longitude);
+            } else {
+                updateMapView(Latitude, Longitude);
+            }
+        }
 
-        var busIcon = L.icon({
-            iconUrl: "img/bus-svgrepo-com.svg",
-            iconSize: [30, 30],
-        });
-        var userIcon = L.icon({
-            iconUrl: "img/user-svgrepo-com.svg",
-            iconSize: [30, 30],
-        });
+        function createMap(Latitude, Longitude) {
+            map = L.map("map").setView([6.987847, 81.057530], 13);
 
-        var marker = L.marker([6.987884, 81.057519], {
-            icon: busIcon,
-        }).addTo(map);
-        var marker = L.marker([6.934545, 79.847117], {
-            icon: userIcon,
-        }).addTo(map);
+            var mapLink = "<a href='http://openstreetmap.org'>OpenStreetMap</a>";
+            L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+                attribution: "JourneyEase; " + mapLink + ", contribution",
+                maxZoom: 21,
+            }).addTo(map);
 
-        map.on("click", function(e) {
-            L.Routing.control({
-                    waypoints: [
-                        L.latLng(6.987884, 81.057519),
-                        L.latLng(6.934545, 79.847117),
-                    ],
-                })
-                .addTo(map);
-        });
+            createMarkers(Latitude, Longitude);
+        }
+
+        function createMarkers(Latitude, Longitude) {
+            var busIcon = L.icon({
+                iconUrl: "img/bus-svgrepo-com.svg",
+                iconSize: [30, 30],
+            });
+            var userIcon = L.icon({
+                iconUrl: "img/user-svgrepo-com.svg",
+                iconSize: [30, 30],
+            });
+
+            if (busMarker) map.removeLayer(busMarker);
+            if (userMarker) map.removeLayer(userMarker);
+
+            busMarker = L.marker([6.987847, 81.057530], {       
+                icon: busIcon,
+            }).addTo(map);
+
+            userMarker = L.marker([Latitude, Longitude], {
+                icon: userIcon,
+            }).addTo(map);
+        }
+
+        function updateMapView(Latitude, Longitude) {
+            if (map) {
+                createMarkers(Latitude, Longitude);
+            }
+        }
+
+        function handleError(error) {
+            console.log("Error getting location: " + error.message);
+        }
+
+        setInterval(getLocation, 500);
     </script>
+
+    <div id="map" style="width: 100%; height: 100vh"></div>
+    <iframe id="secondPageFrame" style="display: none;"></iframe>
+    <script>
+        function openAndCloseSecondPage() {
+            // Get a reference to the hidden iframe
+            var iframe = document.getElementById('secondPageFrame');
+
+            // Set the iframe's source to the second PHP page
+            iframe.src = './test2.php';
+
+            // Close the iframe after 5 seconds
+            setTimeout(function() {
+                iframe.src = ''; // Clear the iframe's source
+            }, 500); // Adjust the time (in milliseconds) as needed
+        }
+
+        // Call the function initially
+        openAndCloseSecondPage();
+
+        // Set up an interval to call the function every 5 seconds
+        setInterval(openAndCloseSecondPage, 500); // Repeat every 5 seconds
+    </script>
+
 </body>
 
 </html>

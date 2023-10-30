@@ -12,13 +12,26 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     echo ("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT * FROM ticket_reservation WHERE UserID = '$userID'";
+$sql = "SELECT
+    tr.*,
+    s.Schedule_ID AS Reservation_Schedule_ID,
+    s.*,
+    b.*,
+    r.*
+FROM
+ticket_reservation AS tr
+JOIN schedule AS s ON Schedule_ID = s.Schedule_ID
+JOIN bus AS b ON s.Bus_ID = b.Bus_ID
+JOIN route AS r ON s.Route_ID = r.Route_ID
+WHERE
+tr.UserID = '$userID'";
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {
     die("Query failed: " . mysqli_error($conn));
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,8 +107,8 @@ if (!$result) {
         // Call getUserLocation every 10 seconds
         setInterval(getUserLocation, 10000);
     </script>
-    <?php 
-    
+    <?php
+
     ?>
 
     <!--Nav bar start-->
@@ -156,6 +169,7 @@ if (!$result) {
         </nav>
     </div>
     <!---Nav bar End-->
+
     <div class="accordion-for-trackBus">
         <div class="accordion" id="accordionExample">
             <?php
@@ -163,90 +177,55 @@ if (!$result) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $tid = $row['Ticket_ID'];
                 $sno = $row['SeatNO'];
+                $date = $row['Date'];
+                $stl = $row['Start_Location'];
+                $dtl = $row['Destination_Of_Location'];
+                $at = $row['Arrival_Time'];
+                $bus = $row['Bus_Registration_Number'];
 
                 echo $i;
                 echo '<div class="accordion-item">
-                       <h2 class="accordion-header">
-                         <button
-                           class="accordion-button collapsed"
-                           type="button"
-                           data-bs-toggle="collapse"
-                           data-bs-target="#col' . $i . '"
-                           aria-expanded="false"
-                           aria-controls="col' . $i . '"
-                         >
-                           <div class="row text-center" style="margin-left: 20%">
-                             <div class="col">
-                               <h6>Ticket Id : <strong>abcd1234</strong></h6>
-                             </div>
-                             <div class="col">
-                               <h6>Bus Route : <strong>Badulla - colombo</strong></h6>
-                             </div>
-                             <div class="col">
-                               <h6>Bus Register No : <strong>NP1234</strong></h6>
-                             </div>
-                             <div class="col">
-                               <h6>Arraival Time : <strong>11.35PM</strong></h6>
-                             </div>
-                           </div>
-                         </button>
-                       </h2>
-                       <div
-                         id="col' . $i . '"
-                         class="accordion-collapse collapse"
-                         data-bs-parent="#accordionExample"
-                       >
-                         <div class="accordion-body text-center">
-                         <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
-                         <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-                 
-                         <script>
-                             var map = L.map("map").setView([6.987884, 81.057519], 11);
-                             mapLink = "<a href="http://openstreetmap.org">OpenStreetMap</a>";
-                             L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-                                 attribution: "Leaflet &copy; " + mapLink + ", contribution",
-                                 maxZoom: 18,
-                             }).addTo(map);
-                 
-                             var taxiIcon = L.icon({
-                                 iconUrl: "img/bus-svgrepo-com.svg",
-                                 iconSize: [70, 70],
-                             });
-                 
-                             var marker = L.marker([6.987884, 81.057519], {
-                                 icon: taxiIcon,
-                             }).addTo(map);
-                 
-                             map.on("click", function (e) {
-                                 console.log(e);
-                                 var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(
-                                     map
-                                 );
-                                 L.Routing.control({
-                                     waypoints: [
-                                         L.latLng(6.987884, 81.057519),
-                                         L.latLng(e.latlng.lat, e.latlng.lng),
-                                     ],
-                                 })
-                                     .on("routesfound", function (e) {
-                                         var routes = e.routes;
-                                         console.log(routes);
-                 
-                                         e.routes[0].coordinates.forEach(function (
-                                             coord,
-                                             index
-                                         ) {
-                                             setTimeout(function () {
-                                                 marker.setLatLng([coord.lat, coord.lng]);
-                                             }, 100 * index);
-                                         });
-                                     })
-                                     .addTo(map);
-                             });
-                         </script>
-                         </div>
-                       </div>
-                     </div>';
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#col' . $i . '"
+                    aria-expanded="false"
+                    aria-controls="col' . $i . '"
+                  >
+                    <div class="row text-center" style="margin-left: 20%">
+                      <div class="col">
+                        <h6>Date : <strong>' . $date . '</strong></h6>
+                      </div>
+                      <div class="col">
+                        <h6>Bus Route : <strong>' . $stl . ' - ' . $dtl . '</strong></h6>
+                      </div>
+                      <div class="col">
+                        <h6>Bus Register No : <strong>' . $bus . '</strong></h6>
+                      </div>
+                      <div class="col">
+                        <h6>Arraival Time : <strong>' . $at . '</strong></h6>
+                      </div>
+                    </div>
+                  </button>
+                </h2>
+                <div
+                  id="col' . $i . '"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body text-center">
+                  <iframe
+                     src="./trackbussingle.php"
+                     width="100%"
+                     height="300"
+                     frameborder="0"
+                     ></iframe>  
+                 </div>
+                </div>
+              </div>';
+
                 $i++;
             }
             mysqli_close($conn);
