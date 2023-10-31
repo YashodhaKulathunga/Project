@@ -78,39 +78,6 @@ if (!$result) {
 </head>
 
 <body>
-    <script>
-        function getUserLocation() {
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
-
-                    // Send the location data to the server using AJAX
-                    $.ajax({
-                        type: "POST",
-                        url: "updateLocation.php",
-                        data: {
-                            latitude: latitude,
-                            longitude: longitude
-                        },
-                        success: function(response) {
-                            console.log("Location updated successfully.");
-                        },
-                        error: function() {
-                            console.error("Error updating location.");
-                        }
-                    });
-                });
-            }
-        }
-
-        // Call getUserLocation every 10 seconds
-        setInterval(getUserLocation, 10000);
-    </script>
-    <?php
-
-    ?>
-
     <!--Nav bar start-->
     <div class="fixed-top">
         <nav class="navbar navbar-expand-lg NAVBAR">
