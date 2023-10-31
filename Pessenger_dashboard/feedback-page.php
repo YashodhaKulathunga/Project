@@ -61,6 +61,40 @@
                         </nav>
                     </div>
                 </div>
+                <?php
+
+                     require_once('../Classes/Pessenger.php');
+                     use classes\Pessenger;
+                    //$User_ID=USER0005;
+
+                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        if(isset($_POST['submit'])){
+                            if(empty($_POST['email']) || empty($_POST['feedback'])){
+                                echo '<div class="alert alert-danger" role="alert">Please Fill all feilds.</div>';
+                            }else{
+                                $email = $_POST['email'];
+                                $feedback = $_POST['feedback']; 
+                                
+                                $pesseger=new Pessenger(null,null,null,null,null,null,null,null,null);
+                                    if($pesseger->Feedback($email,$feedback)){
+                                        echo '<div class="alert alert-success">Thank You!!,Your Feedback.</div>';
+                                    } else {
+                                        echo '<div class="alert alert-danger" role="alert">Email is not found in the database..</div>';
+                                    }
+                                }
+                            }else{
+                                echo '<div class="alert alert-danger" role="alert">Fill the form throught Submit Button.</div>';
+                            }
+
+                        
+
+
+                     }else{
+                         //echo '<div class="alert alert-danger" role="alert">Fill the form throught POST method.</div>';
+                     }
+
+
+                ?>
                 <!---profile card--->
                 <div class="row p-4">
                     <div class="col-md-12">
@@ -72,11 +106,11 @@
                         <div class="card custom-card p-2">
                             <h5 class="card-title pb-4 styled-heading">Feedback</h5>
                             <div class="card-body">
-                                <form class="form-horizontal" action="" method="POST">
+                                <form class="form-horizontal" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
                                     <div class="mb-3 row">
                                         <label for="name" class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control"  id="Email" placeholder="name@example.com" name="Email">
+                                            <input type="text"   class="form-control"  id="email" placeholder="name@example.com" name="email">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
