@@ -108,7 +108,7 @@
                             <img src="images/journey pic/updatesituation.jpg"alt="Image" class="card-image" style="width: 130px;">
                             <h5 class="card-title">Update Expences Details</h5>
                             <p class="card-text">Update Expences Details here.</p>
-                            <a href="Fuel.php" class="btn btn-primary">Update Expences Details</a>
+                            <a href="expence.php" class="btn btn-primary">Update Expences Details</a>
                         </div>
                     </div>
                 </div>
