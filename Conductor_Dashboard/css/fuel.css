@@ -23,6 +23,7 @@ body {
     border-radius: 5px; /* Add rounded corners if desired */
     cursor: pointer;
     margin-top: 10px;
+    font-weight: bold;
   }
   
   .custom-button:hover {
