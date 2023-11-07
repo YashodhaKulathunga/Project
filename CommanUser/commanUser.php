@@ -260,7 +260,6 @@ session_start();
 
                                 // Loop through the results and print details from both tables
                                 foreach ($results as $row) {
-                                    $_SESSION['SHID'] = $row['Schedule_ID'];
                                     echo '<div class="container mt-3 mb-3">';
                             ?>
                                     <?php echo '<div class="p-5 text-center Choose-bus--container rounded-3">'; ?>
@@ -290,7 +289,7 @@ session_start();
                                                 <h3 class="ticketPrice">RS. 2000</h3>
                                                 <small><?php echo $row['Date'] ?></small>
                                                 <br />
-                                                <a href="SeatSelection.php"><button type="button" class="btn button-choose-sear mt-2">Choose Seat</button></a>
+                                                <a href="SeatSelection.php?var=<?php echo urlencode($row['Schedule_ID']); ?>"><button type="button" class="btn button-choose-sear mt-2">Choose Seat</button></a>
 
                                             </div>
                                         </div>

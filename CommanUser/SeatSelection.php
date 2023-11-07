@@ -15,7 +15,7 @@ if (!$connection) {
 <?php
 session_start();
 
-$SHID = $_SESSION['SHID'];
+$SHID = $_GET['var'];
 $userID =  $_SESSION["userid"];
 
 
