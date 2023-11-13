@@ -1,49 +1,3 @@
-<?php
-        require_once('../classes/dbConnectorC.php');
-
-        use classes\dbconnectorC;
-
-
-
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            if (isset($_POST['submit'])) {
-                if (empty($_POST['Number']) || empty($_POST['color'])|| empty($_POST['Model'])|| empty($_POST['seats'])|| empty($_POST['ID'])) {
-                    echo'<div class="alert alert-danger" role="alert"> Please fill the Form!</div>';
-                } else {
-                    $Number = $_POST['Number'];
-                    $color = $_POST['color'];
-                    $Model = $_POST['Model'];
-                    $seats = $_POST['seats'];
-                    $ID = $_POST['ID'];
-
-                    $dbcon = new dbconnectorC();
-                    $con = $dbcon->getConnection();
-                    
-                
-
-                   
-                    $query1 = "INSERT INTO bus(Type_of_Bus,Bus_Registration_Number,Colour,No_Of_Seats,Bus_ID)VALUES(?,?,?,?,?)";
-
-                    $pstmt1 = $con->prepare($query1);
-                    $pstmt1->bindValue(1, $Model);
-
-                    $pstmt1->bindValue(2, $Number);
-                    $pstmt1->bindValue(3, $color);
-                    $pstmt1->bindValue(4, $seats);
-                    $pstmt1->bindValue(5, $ID);
-                    $pstmt1->execute();
-
-
-                    if ($pstmt1) {                        
-                        echo'<div class="alert alert-success" role="alert">Successfully Added.</div>';
-
-                    } else {                      
-                        echo'<div class="alert alert-danger" role="alert"> Please fill the Form!</div>';
-                    }
-                }
-            }
-        }
-        ?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -77,6 +31,43 @@ user-cst/20/027
               integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
               crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
+
+    <?php
+
+
+require_once('../Classes/Admin.php');
+
+use classes\Admin;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['submit'])) {
+        if (empty($_POST['Model']) || empty($_POST['ID']) || empty($_POST['Number']) || empty($_POST['color']) || empty($_POST['seats'])) {
+            echo '<div class="alert alert-danger" role="alert">Please fill all fields.</div>';
+        } else {
+            $Model = $_POST['Model'];
+            $Number = $_POST['Number'];
+            $color = $_POST['color'];
+            $seats = $_POST['seats'];
+            $ID = $_POST['ID'];
+
+            $bus = new Admin(null, null, null, null, null);
+
+            if ($bus->busExists($ID)) {
+                echo '<div class="alert alert-danger" role="alert">This bus is already registered in the system.</div>';
+            } else {
+                if ($bus->busRegistration($Model, $Number, $color, $seats, $ID)) {
+                    echo '<div class="alert alert-success">Bus added successfully..!!</div>';
+                } else {
+                    echo '<div class="alert alert-danger" role="alert">Failed to add the bus.</div>';
+                }
+            }
+        }
+    } else {
+        echo '<div class="alert alert-danger" role="alert">Please fill the form!</div>';
+    }
+}
+?>
+
     <body>        
         <div class="container-fluid bg-dark text-light py-3">
             <div class="d-flex justify-content-center">
@@ -84,7 +75,8 @@ user-cst/20/027
             </div>
         </div>
         <section class="container my-2 bgdark w-50 text">
-            <form class="row g-3p-3" action="" method="POST">
+        <form class="row g-3" action="" method="POST">
+
 
 
                 
