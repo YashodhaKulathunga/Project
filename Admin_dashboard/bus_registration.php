@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <section class="container my-2 bgdark w-50 text">
-        <form class="row g-3" action="" method="POST">
+        <form class="row g-3" action="<?php echo $_SERVER["PHP_SELF"]; ?> " method="POST">
 
 
 
