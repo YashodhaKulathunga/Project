@@ -207,3 +207,39 @@ body {
 .indicator.active {
     background-color: #cfc4c4;
 }
+@media screen and (max-width: 768px) {
+    #sidebar {
+        display: none;
+    }
+    
+    #topbar {
+        justify-content: center;
+        padding: 10px 0;
+    }
+    
+    #topbar h2 {
+        padding-left: 0;
+    }
+    
+    /* Add a sidebar toggle button */
+    .btn btn-primary {
+        display: block;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1100;
+        cursor: pointer;
+    }
+}
+
+/* Style for the sidebar toggle button */
+.btn btn-primary {
+    width: 30px;
+    height: 30px;
+    background: #3498db;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    font-size: 18px;
+}
