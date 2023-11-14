@@ -383,6 +383,14 @@ session_start();
     </div>
     </div>
     </div>
+    <div class="text-center mt-4">
+        <a href="./bookentirebusfilter.php">
+            <button class="w-50 btn btn-lg btn-find-busses" style="height: 5rem;">
+                Book Entire Bus
+            </button>
+        </a>
+
+    </div>
     <!--Find Rroute Page End-->
     <!--Easy Option Contents End-->
     <!--Body Part End-->
