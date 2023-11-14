@@ -8,7 +8,7 @@
    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,7 +72,7 @@
                 <div class="col-md-4 pb-5">
                     <div class="card shadow text-center custom-card">
                         <div class="card-body">
-                            <img src="images/journey pic/qrcode.jpg"alt="Image" class="card-image" style="width: 130px;">
+                            <img src="./images/images/qrcode.jpg"alt="Image" class="card-image" style="width: 130px;">
                             <h5 class="card-title">Scann QR code</h5>
                             <p class="card-text">Scann QR code here.</p>
                             <a href="#" class="btn btn-primary">Go to Scann QR code</a>
@@ -80,40 +80,40 @@
                     </div>
                 </div>
           
-                <div class="col-md-4">
+                <div class="col-md-4 ">
                     <div class="card shadow text-center custom-card">
                         <div class="card-body">
-                            <img src="images/journey pic/journey.jpg"alt="Image" class="card-image" style="width: 130px;">
+                            <img src="./images/images/journey.jpg"alt="Image" class="card-image" style="width: 130px;">
                             <h5 class="card-title">Update Situations</h5>
                             <p class="card-text">Update Situations here.</p>
                             <a href="#" class="btn btn-primary">Go to Update Situations</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 pb-5">
                     <div class="card shadow text-center custom-card">
                         <div class="card-body">
-                            <img src="images/journey pic/Package cancellation.jpg"alt="Image" class="card-image" style="width: 130px;">
+                            <img src="./images/images/Package cancellation.jpg"alt="Image" class="card-image" style="width: 130px;">
                             <h5 class="card-title">Update Fuel Expences</h5>
                             <p class="card-text">Update  Fuel Expences here.</p>
                             <a href="Fuel.php" class="btn btn-primary">Go to Update  Fuel Expences</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 pb-5">
                     <div class="card shadow text-center custom-card">
                         <div class="card-body">
-                            <img src="images/journey pic/updatesituation.jpg"alt="Image" class="card-image" style="width: 130px;">
+                            <img src="./images/images/Package cancellation.jpg"alt="Image" class="card-image" style="width: 130px;">
                             <h5 class="card-title">Update Expences Details</h5>
                             <p class="card-text">Update Expences Details here.</p>
-                            <a href="Fuel.php" class="btn btn-primary">Update Expences Details</a>
+                            <a href="expence.php" class="btn btn-primary">Update Expences Details</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>

@@ -13,7 +13,7 @@ and open the template in the editor.
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href=" ./css/journey.css">
+        <link rel="stylesheet" href="./css/fuel.css">
         <title>Other Expences</title>
 
 
@@ -109,7 +109,7 @@ and open the template in the editor.
 
 
                 <div class="col-8">
-                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="submit" class="custom-button">Submit</button>
                 </div>
 
             </form>
