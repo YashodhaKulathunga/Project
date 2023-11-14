@@ -1,0 +1,1 @@
+{"Latitude":"Latitude cookie not set","Longitude":"Longitude cookie not set"}

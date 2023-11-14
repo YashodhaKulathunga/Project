@@ -1,6 +1,7 @@
 <?php
-$tktID = $_GET['var1'];
-$seatNO = $_GET['var2'];
+session_start();
+$tktID = $_SESSION["tid"];
+$seatNO = $_SESSION["sno"];
 
 
 
@@ -13,13 +14,13 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-    echo ("Connection failed: " . $conn->connect_error);
+  echo ("Connection failed: " . $conn->connect_error);
 }
 $sql = "SELECT * FROM ticket_reservation WHERE Ticket_ID = '$tktID' AND SeatNO = '$seatNO'";
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {
-    die("Query failed: " . mysqli_error($conn));
+  die("Query failed: " . mysqli_error($conn));
 }
 $row = mysqli_fetch_assoc($result);
 // got the OTP code from Database
@@ -44,9 +45,9 @@ $urlRelativeFilePath = $tempDir . $fileName;
 
 // generating
 if (!file_exists($pngAbsoluteFilePath)) {
-    QRcode::png($codeContents, $pngAbsoluteFilePath);
+  QRcode::png($codeContents, $pngAbsoluteFilePath);
 } else {
-    echo '<hr />';
+  echo '<hr />';
 }
 
 $imagePath = './QRIMAGES/' . $tktID . $seatNO . '.png';
@@ -54,16 +55,16 @@ $imagePath2 = './Images/Banner/bgtkt.png';
 
 
 if (file_exists($imagePath)) {
-    $imageData = file_get_contents($imagePath);
-    $base64Image = base64_encode($imageData);
+  $imageData = file_get_contents($imagePath);
+  $base64Image = base64_encode($imageData);
 } else {
-    echo 'Image file not found.';
+  echo 'Image file not found.';
 }
 if (file_exists($imagePath2)) {
-    $imageData2 = file_get_contents($imagePath2);
-    $base64Image2 = base64_encode($imageData2);
+  $imageData2 = file_get_contents($imagePath2);
+  $base64Image2 = base64_encode($imageData2);
 } else {
-    echo 'Image file not found.';
+  echo 'Image file not found.';
 }
 
 require_once('./dompdf/autoload.inc.php');

@@ -1,0 +1,10 @@
+map.on("click", function(e) {
+    L.Routing.control({
+            waypoints: [
+                L.latLng(<?php echo $currentLatitude; ?>, <?php echo $currentLongitude; ?>),
+                L.latLng(6.934545, 79.847117),
+
+            ],
+        })
+        .addTo(map);
+});

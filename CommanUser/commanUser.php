@@ -3,7 +3,7 @@
 $serverName = "localhost";
 $username = "root";
 $password = "";
-$dbname = "db1";
+$dbname = "journey_ease";
 
 $conn1 = new mysqli($serverName, $username, $password, $dbname);
 
@@ -12,26 +12,8 @@ if ($conn1->connect_error) {
     die("Connection failed: " . $conn1->connect_error);
 }
 
-// Step 1: Retrieve the highest existing RandomUserID
-$sql = "SELECT MAX(RUserID) AS max_id FROM randomuser";
-$result = $conn1->query($sql);
-$row = $result->fetch_assoc();
-$max_id = $row["max_id"];
-// 
-if ($max_id === null) {
-    $nextID = 'RU00001';
-} else {
-    $nextNumber = intval(substr($max_id, 3)) + 1;
-    $nextID = 'RU' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
-}                                               // 
+session_start();
 
-$insert_sql = "INSERT INTO randomuser (RUserID) VALUES ('$nextID')";
-if ($conn1->query($insert_sql) === TRUE) {
-} else {
-    echo "Error: " . $insert_sql . "<br>" . $conn1->error;
-}
-
-$conn1->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,7 +62,14 @@ $conn1->close();
     <div class="fixed-top">
         <nav class="navbar navbar-expand-lg NAVBAR">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="./Images/Logo.png" alt="Logo" width="100" height="69" class="d-inline-block align-text-top" /></a>
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="row"><a class="navbar-brand " href="#"><img src="./Images/Logo.png" alt="Logo" width="100" height="69" class="d-inline-block align-text-top" /></a></div>
+                        <div class="row">
+                            <p class="NAVLINKSACTIVE">Welcome <?php echo $_SESSION["name"] ?> </p>
+                        </div>
+                    </div>
+                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -94,16 +83,16 @@ $conn1->close();
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="./bookedTickets.php?var3=<?php echo $nextID; ?>">
+                            <a class="nav-link" aria-current="page" href="./bookedTickets.php">
                                 <p class="NAVLINKS FIRST-NAVLINK">
                                     Booked Tickets
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="./trackBusses.php">
                                 <p class="NAVLINKS FIRST-NAVLINK">
-                                    Canceled Tickets
+                                    Track Busses
                                 </p>
                             </a>
                         </li>
@@ -112,7 +101,7 @@ $conn1->close();
                                 Other Pages
                             </a>
                             <ul class="dropdown-menu dropdown-bg-navbar drop-down-list-bg">
-                                <li class="navbar-list-tag"><a class="dropdown-item navbar-list-tag" href="#">About US</a></li>
+                                <li class="navbar-list-tag"><a class="dropdown-item navbar-list-tag" href="aboutus.php">About US</a></li>
                                 <li><a class="dropdown-item navbar-list-tag" href="#">Contact Us</a></li>
                                 <li><a class="dropdown-item navbar-list-tag" href="#">Terms and Conditions</a></li>
                             </ul>
@@ -271,7 +260,6 @@ $conn1->close();
 
                                 // Loop through the results and print details from both tables
                                 foreach ($results as $row) {
-                                    $PassSheduleID = $row['Schedule_ID'];
                                     echo '<div class="container mt-3 mb-3">';
                             ?>
                                     <?php echo '<div class="p-5 text-center Choose-bus--container rounded-3">'; ?>
@@ -301,7 +289,7 @@ $conn1->close();
                                                 <h3 class="ticketPrice">RS. 2000</h3>
                                                 <small><?php echo $row['Date'] ?></small>
                                                 <br />
-                                                <a href="SeatSelection.php?var=<?php echo urlencode($PassSheduleID); ?>&var1=<?php echo urlencode($nextID); ?>"><button type="button" class="btn button-choose-sear mt-2">Choose Seat</button></a>
+                                                <a href="SeatSelection.php?var=<?php echo urlencode($row['Schedule_ID']); ?>"><button type="button" class="btn button-choose-sear mt-2">Choose Seat</button></a>
 
                                             </div>
                                         </div>
@@ -395,6 +383,14 @@ $conn1->close();
     </div>
     </div>
     </div>
+    <div class="text-center mt-4">
+        <a href="./bookentirebusfilter.php">
+            <button class="w-50 btn btn-lg btn-find-busses" style="height: 5rem;">
+                Book Entire Bus
+            </button>
+        </a>
+
+    </div>
     <!--Find Rroute Page End-->
     <!--Easy Option Contents End-->
     <!--Body Part End-->
@@ -458,9 +454,9 @@ $conn1->close();
                             <span class="coustomIcon">
                                 <ion-icon name="accessibility-outline"></ion-icon>
                             </span>
-                            <span class="coustomText">
-                                About Us
-                            </span>
+                            
+                            <a class="dropdown-item navbar-list-tag" href="aboutus.php"> <span class="coustomText">About Us </span></a>
+                           
                         </a>
                     </li>
                     <li class="mb-1">

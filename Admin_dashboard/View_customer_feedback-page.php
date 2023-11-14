@@ -38,7 +38,10 @@
             <div class="pt-5">
                 <ul class="pt-4">
                     <li><a href="dashboard-page.php">Dashboard</a></li>
-                    <li><a href="View_customer_feedback-page.php">View Customer's Feedback</a></li>
+
+                    <li><a href="view_customer_feedback-page" class="active">Feedback</a></li>
+                    <li><a href="profile-page.php">Profile</a></li>
+
                     <li><a href="#">Logout</a></li>
                 </ul>
             </div>

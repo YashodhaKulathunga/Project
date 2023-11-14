@@ -1,5 +1,6 @@
 <?php
-$userID = $_GET['var3'];
+session_start();
+$userID = $_SESSION["userid"];
 
 ?>
 <!DOCTYPE html>
@@ -58,7 +59,7 @@ $userID = $_GET['var3'];
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon>
+                        <a href="./varifyOTP.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
 
                     </div>
                 </div>
@@ -82,13 +83,13 @@ $userID = $_GET['var3'];
                 <tbody>
                     <?php
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $tid = $row['Ticket_ID'];
-                        $sno = $row['SeatNO'];
+                        $_SESSION["tid"] = $row['Ticket_ID'];
+                        $_SESSION["sno"] = $row['SeatNO'];
                         echo '<tr>';
                         echo '<td>' . $row['Ticket_ID'] . '</td>';
                         echo '<td>' . $row['SeatNO'] . '</td>';
                         echo '<td>
-                            <a href="ticket.php?var1=' . $tid . '&var2=' . $sno . '">
+                            <a href="ticket.php">
                             <button type="submit" class="w-100 btn btn-lg btn-find-busses" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="button1">
                             Download Ticket
                             </button>

@@ -1,6 +1,8 @@
 <?php
-$paymentID = $_GET['var1'];
-$otpm = $_GET['var2'];
+session_start();
+
+$paymentID = $_SESSION['payID'];
+$otpm = $_SESSION['otpm'];
 
 ?>
 <!DOCTYPE html>
@@ -39,8 +41,7 @@ $otpm = $_GET['var2'];
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon>
-
+                        <a href="./checkout.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
                     </div>
                 </div>
             </div>
@@ -65,7 +66,7 @@ $otpm = $_GET['var2'];
                     <div class="text-center mb-4">
                         <h3>Enter The OTP Number to varify</h3>
                     </div>
-                    <form action="otpProcess.php?var2=<?php echo $paymentID ?>" method="POST">
+                    <form action="otpProcess.php" method="POST">
                         <div class="form-outline mb-4">
                             <input type="number" name="otp" class="form-control form-control-lg" placeholder="Enter 6 Digit OTP Number" />
                         </div>

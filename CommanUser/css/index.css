@@ -294,7 +294,10 @@ body {
   background-color: #000032;
   color: #f3c001;
 }
-
+.Choose-package--container {
+  background-color: #f3c001;
+  color: #000032;
+}
 .Heading-in-choose-shedule {
   color: #f3c001;
 }
@@ -746,6 +749,17 @@ body {
   color: #f3c001;
   margin-bottom: 12.5rem;
 }
+.checkout-form-final-entire-bus {
+  margin-top: 8.5rem;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-image: url("../Images/bgBanner.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  color: #f3c001;
+  margin-bottom: 12.5rem;
+}
 .image-money {
   height: 250px;
   width: 250px;
@@ -776,4 +790,44 @@ body {
 }
 .table-row-class {
   background-color: #000032;
+}
+.accordion-for-trackBus {
+  margin-top: 14.5rem;
+}
+.choosePackagestitle {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.packagebtn:hover {
+  border-radius: 5px;
+  background-color: #f3c001;
+  color: #000032;
+  transition: 0.5s;
+  transform: scale(0.9);
+  outline: #f3c001;
+}
+.packagebtn {
+  border-radius: 5px;
+  background-color: #f3c001;
+  color: #000032;
+}
+.packagebtn:focus {
+  border-radius: 5px;
+  background-color: #f3c001;
+  color: #000032;
+  transition: 0.5s;
+  transform: scale(0.9);
+  padding: 5px;
+}
+.choosePackagennotes {
+  font-size: 10px;
+  font-weight: 500;
+}
+.noteforcustomerpayment {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
+.iconinchoosepackage {
+  margin-top: 8px;
 }

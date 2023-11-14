@@ -1,5 +1,6 @@
 <?php
-$userID = $_GET['var3'];
+session_start();
+$userID = $_SESSION["userid"];
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -66,7 +67,14 @@ if (!$result) {
     <div class="fixed-top">
         <nav class="navbar navbar-expand-lg NAVBAR">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="./Images/Logo.png" alt="Logo" width="100" height="69" class="d-inline-block align-text-top" /></a>
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="row"><a class="navbar-brand " href="./commanUser.php"><img src="./Images/Logo.png" alt="Logo" width="100" height="69" class="d-inline-block align-text-top" /></a></div>
+                        <div class="row">
+                            <p class="NAVLINKSACTIVE">Welcome <?php echo $_SESSION["name"] ?> </p>
+                        </div>
+                    </div>
+                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -80,16 +88,16 @@ if (!$result) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="./bookedTickets.php">
                                 <p class="NAVLINKSACTIVE FIRST-NAVLINK">
                                     Booked Tickets
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="./trackBusses.php">
                                 <p class="NAVLINKS FIRST-NAVLINK">
-                                    Canceled Tickets
+                                    Track Busses
                                 </p>
                             </a>
                         </li>
