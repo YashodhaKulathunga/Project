@@ -17,7 +17,8 @@ class Pessenger{
     private  $User_ID;
 
 
-    public function __construct($name,$email,$uid,$pno,$pwd, $pwdrepeat,$feedback){
+    public function __construct($name = null, $email = null, $uid = null, $pno = null, $pwd = null, $pwdrepeat = null, $feedback = null) {
+        
         $this->name=$name;
         $this->email= $email;
         $this->uid=$uid;
@@ -141,6 +142,18 @@ class Pessenger{
         return $result;
     }
     
-    
+    public function getFeedbacks() {
+        $dbcon = new DbConnector();
+        $con = $dbcon->getConnection();
+
+        $query = "SELECT Feedback, Email FROM feedback";
+        $pstmt = $con->prepare($query);
+        $pstmt->execute();
+        
+        // Fetch all feedback records as an associative array
+        $feedbacks = $pstmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $feedbacks;
+    } 
         
 }
