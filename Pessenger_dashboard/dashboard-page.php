@@ -84,7 +84,7 @@
                             <img src="images/journey pic/Ticket Booking.jpg"alt="Image" class="card-image" style="width: 130px;">
                             <h5 class="card-title">Ticket Bookings</h5>
                             <p class="card-text">Manage ticket bookings here.</p>
-                            <a href="../commanUser.php" class="btn btn-primary">Go to Ticket Booking</a>
+                            <a href="../commanUser.php" class="btn btn-primary">Ticket Booking</a>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                             <img src="images/journey pic/TICKET cANCELLATION.jpg"alt="Image" class="card-image" style="width: 130px;">
                             <h5 class="card-title">Ticket Cancellations</h5>
                             <p class="card-text">Manage ticket cancellations here.</p>
-                            <a href="TicketCancel.php" class="btn btn-primary">Go to Ticket Cancellations</a>
+                            <a href="TicketCancel.php" class="btn btn-primary">Ticket Cancellation</a>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                             <img src="images/journey pic/Package Booking.jpg"alt="Image" class="card-image" style="width: 130px;">
                             <h5 class="card-title">Package Bookings</h5>
                             <p class="card-text">Manage package bookings here.</p>
-                            <a href="../PackageBooking.php" class="btn btn-primary">Go to Package Bookings</a>
+                            <a href="../PackageBooking.php" class="btn btn-primary">Package Booking</a>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                             <img src="images/journey pic/Package cancellation.jpg"alt="Image" class="card-image" style="width: 130px;">
                             <h5 class="card-title">Package Cancellations</h5>
                             <p class="card-text">Manage package cancellations here.</p>
-                            <a href="TicketCancel.php" class="btn btn-primary">Go to Package Cancellations</a>
+                            <a href="TicketCancel.php" class="btn btn-primary">Package Cancellation</a>
                         </div>
                     </div>
                 </div>
