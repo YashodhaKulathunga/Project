@@ -32,37 +32,38 @@ and open the template in the editor.
 </head>
 
 <body>
-    <?php
-    require_once('../Classes/Admin.php');
-    use classes\Admin;
+<?php
+require_once('../Classes/Admin.php');
+use classes\Admin;
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST['submit'])) {
-            if (empty($_POST['Name']) || empty($_POST['email']) || empty($_POST['PhoneNo']) || empty($_POST['ID']) || empty($_POST['address']) || empty($_POST['CID'])) {
-                echo '<div class="alert alert-danger" role="alert">Please fill all fields.</div>';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['submit'])) {
+        if (empty($_POST['Name']) || empty($_POST['email']) || empty($_POST['PhoneNo']) || empty($_POST['ID']) || empty($_POST['address']) || empty($_POST['CID'])) {
+            echo '<div class="alert alert-danger" role="alert">Please fill all fields.</div>';
+        } else {
+            $Name = $_POST['Name'];
+            $email = $_POST['email'];
+            $PhoneNo = $_POST['PhoneNo'];
+            $ID = $_POST['ID'];
+            $address = $_POST['address'];
+            $CID = $_POST['CID'];
+
+            $Emp = new Admin(null, null, null, null, null, null);
+
+            if ($Emp->EmpExists($CID)) {
+                echo '<div class="alert alert-danger" role="alert">Conductor with ID ' . $CID . ' already exists.</div>';
             } else {
-                $Name = $_POST['Name'];
-                $email = $_POST['email'];
-                $PhoneNo = $_POST['PhoneNo'];
-                $ID = $_POST['ID'];
-                $address = $_POST['address'];
-                $CID = $_POST['CID'];
-
-                $Emp = new Admin(null, null, null, null, null, null);
-                //  if ($Emp->EmpExists($ID)) {
-                //} else {
-                    if ($Emp->Emp_Registration($CID, $ID, $Name, $PhoneNo)) {
-                        echo '<div class="alert alert-success" role="alert">Successfully Added.</div>';
-                    } else {
-                        echo '<div class="alert alert-danger" role="alert">Failed to add the bus.</div>';
-                    }
+                if ($Emp->Emp_Registration($CID, $ID, $Name, $PhoneNo)) {
+                    echo '<div class="alert alert-success" role="alert">Successfully Added.</div>';
+                } else {
+                    echo '<div class="alert alert-danger" role="alert">Failed to add the bus.</div>';
                 }
             }
-        } else {
-           // echo '<div class="alert alert-danger" role="alert">Please fill the form!</div>';
         }
-    
-    ?>
+    }
+}
+?>
+
 
     <div class="container-fluid bg-dark text-light py-3">
         <div class="d-flex justify-content-center">

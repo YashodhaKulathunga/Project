@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+    color: wheat;
+    font-weight: bold;
+
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-image: url('./images/PP.jpg'); /* Replace 'path/to/your/image.jpg' with the actual path to your background image */
+    background-size: cover; /* This ensures the background image covers the entire viewport */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-color: #fff; /* This will be used as a fallback background color */
+}
+.custom-button {
+    background-color: #ff5733; /* Change to your desired color */
+    color: #fff; /* Text color */
+    padding: 10px 20px; /* Adjust the padding as needed */
+    border: none;
+    border-radius: 5px; /* Add rounded corners if desired */
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  .custom-button:hover {
+    background-color: #d84629; /* Change to the hover color you prefer */
+  }
+
+
+
+
+

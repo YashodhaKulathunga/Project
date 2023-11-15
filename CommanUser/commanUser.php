@@ -3,7 +3,7 @@
 $serverName = "localhost";
 $username = "root";
 $password = "";
-$dbname = "db1";
+$dbname = "journey_ease";
 
 $conn1 = new mysqli($serverName, $username, $password, $dbname);
 
@@ -101,7 +101,7 @@ session_start();
                                 Other Pages
                             </a>
                             <ul class="dropdown-menu dropdown-bg-navbar drop-down-list-bg">
-                                <li class="navbar-list-tag"><a class="dropdown-item navbar-list-tag" href="#">About US</a></li>
+                                <li class="navbar-list-tag"><a class="dropdown-item navbar-list-tag" href="aboutus.php">About US</a></li>
                                 <li><a class="dropdown-item navbar-list-tag" href="#">Contact Us</a></li>
                                 <li><a class="dropdown-item navbar-list-tag" href="#">Terms and Conditions</a></li>
                             </ul>
@@ -454,9 +454,9 @@ session_start();
                             <span class="coustomIcon">
                                 <ion-icon name="accessibility-outline"></ion-icon>
                             </span>
-                            <span class="coustomText">
-                                About Us
-                            </span>
+                            
+                            <a class="dropdown-item navbar-list-tag" href="aboutus.php"> <span class="coustomText">About Us </span></a>
+                           
                         </a>
                     </li>
                     <li class="mb-1">
