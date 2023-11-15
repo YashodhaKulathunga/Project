@@ -463,10 +463,11 @@ session_start();
         <div class="row">
             <div class="col-12 col-md ">
                 <span>
-                    <img class="mb-2" src="images/logo2.jpg" alt="" width="24" height="19">
+                    <img class="mb-2" src="images/logo2.jpg" alt="" width="125" height="87">
                 </span>
                 <span>
-                    <p>Make Your Journy Easy</p>
+                <p style="color: pink;">Make Your Journey Easy</p>
+
                 </span>
                 <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
                 <div class="row ">
@@ -503,7 +504,7 @@ session_start();
                 </div>
             </div>
             <div class="col-6 col-md">
-                <h5 style="color: white;">Links</h5>
+                <h5 style="color: pink;"">Links</h5>
                 <ul class="list-unstyled text-small">
                     <li class="mb-1"><a class="nav-link" aria-current="page" href="#">
                             <span class="coustomIcon">
@@ -514,18 +515,18 @@ session_start();
                             </span>
                         </a>
                     </li>
-                    <li class="mb-1"> <a class="nav-link" aria-current="page" href="#">
+                    <li class="mb-1"> <a class="nav-link" aria-current="page" href="aboutus.php">
                             <span class="coustomIcon">
                                 <ion-icon name="accessibility-outline"></ion-icon>
                             </span>
 
-                            <a href="aboutus.php"><span class="coustomText">About Us </span></a>
+                            <span class="coustomText">About Us </span></a>
 
 
 
                     </li>
                     <li class="mb-1">
-                        <a class="nav-link" aria-current="page" href="#">
+                        <a class="nav-link" aria-current="page" href="Contactus.php">
                             <span class="coustomIcon">
                                 <ion-icon name="headset-outline"></ion-icon>
                             </span>
@@ -537,15 +538,15 @@ session_start();
                 </ul>
             </div>
             <div class="col-6 col-md">
-                <h5 style="color: white;">Policies</h5>
+                <h5 style="color: pink;">Policies</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="#">privacy Policy</a></li>
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="#">Terms & Conditions</a></li>
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="#">Ticket Policy</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="privacyPolicy.php">privacy Policy</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="Terms.php">Terms & Conditions</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="TicketPolicy.php">Ticket Policy</a></li>
                 </ul>
             </div>
             <div class="col-6 col-md">
-                <h5>Contact us</h5>
+                <h5 style="color: pink;">Contact us</h5>
                 <ul class="list-unstyled text-small">
                     <li class="mb-1"><a class="link-secondary text-decoration-none listtext"
                             href="../contactus/index.php">
