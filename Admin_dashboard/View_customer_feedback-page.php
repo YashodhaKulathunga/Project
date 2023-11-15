@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
@@ -23,7 +24,7 @@
 </head>
 
 <body>
-    <section>
+    <!-- <section>
         <div class="row">
             <div id="topbar">
                 <div>
@@ -34,6 +35,8 @@
                 </div>
             </div>
         </div>
+
+
         <div id="sidebar">
             <div class="pt-5">
                 <ul class="pt-4">
@@ -46,7 +49,36 @@
                 </ul>
             </div>
         </div>
+  
+    </section> -->
+    <?php
 
-        
-    </body>
-    </html>
+require '../Classes/Pessenger.php';
+
+// Create an instance of the Pessenger class
+$pessenger = new Classes\Pessenger();
+
+// Call the getFeedbacks method to retrieve feedback data
+$feedbacks = $pessenger->getFeedbacks();
+
+// Display the feedback data inside Bootstrap cards
+foreach ($feedbacks as $feedback) {
+    ?>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Email: <?php echo $feedback['Email']; ?></h5>
+            <p class="card-text">Feedback: <?php echo $feedback['Feedback']; ?></p>
+        </div>
+    </div>
+    <br>
+    <?php
+}
+?>
+
+   
+
+
+
+</body>
+
+</html>
