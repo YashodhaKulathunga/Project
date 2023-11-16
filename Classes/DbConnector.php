@@ -7,7 +7,7 @@ use PDOException;
 class DbConnector {
 
     private $host = "localhost";
-    private $dbname = "journey_ease";
+    private $dbname = "db1";
     private $dbuser = "root";
     private $dbpw = "";
 
