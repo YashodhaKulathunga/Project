@@ -2,7 +2,29 @@
   padding-bottom: 15%;
   background-color: #000032;
   margin-bottom: 0px;
-  width: 18rem;
+  width: 17.5rem;
+  height: 3rem;
+  background-image: linear-gradient(
+    90deg,
+    #030372 0%,
+    #000032 29%,
+    #030372 67%,
+    #000032 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+  padding: 2%;
+  border-radius: 78px 78px 0 0;
+}
+.cidashFooter {
+  margin-top: 5px;
+  padding-bottom: 15%;
+  background-color: #000032;
+  margin-bottom: 0px;
+  width: 17.8rem;
   height: 3rem;
   background-image: linear-gradient(
     90deg,
@@ -46,7 +68,7 @@
   transform: scale(1.07);
 }
 .navigationDiv {
-  margin-top: 1rem;
+  margin-top: 2px;
 }
 .pageTitle {
   text-transform: uppercase;
@@ -111,6 +133,9 @@
 .nextDiv {
   margin-top: 3rem;
 }
+.nextDiv2 {
+  margin-top: 1rem;
+}
 
 .header__item {
   text-transform: uppercase;
@@ -171,4 +196,64 @@
 .iconImage {
   height: 35px;
   width: 35px;
+}
+.QRcard {
+  margin-top: 5rem;
+  height: 24rem;
+  width: 16rem;
+}
+.qrcodeButton {
+  margin-top: 3rem;
+  background-color: #f3c001;
+  width: 8rem;
+  height: 8rem;
+  padding: 5%;
+  border-radius: 5px;
+  color: #000032;
+}
+.qrcodeButton:hover {
+  margin-top: 3rem;
+  background-color: #000032;
+  width: 8rem;
+  height: 8rem;
+  padding: 5%;
+  border-radius: 5px;
+  color: #f3c001;
+  border: #f3c001;
+  border-width: 25px;
+  border-radius: 5px;
+}
+.qrbutton-text {
+  color: #000032;
+}
+.qrbutton-text:hover {
+  color: #f3c001;
+}
+.btn-Checkout-form {
+  height: 50px;
+  width: 70%;
+  background-color: #f3c001;
+  color: #000032;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: auto;
+}
+.btn-Checkout-form:hover {
+  background-color: transparent;
+  border-color: #f3c001;
+  border-style: solid;
+  border-width: 3px;
+  color: #f3c001;
+  border-radius: 5px;
+}
+.icon-inside-form {
+  width: 150px;
+  height: 150px;
+}
+.title-for-expense-form {
+  font-size: 25px;
+  color: #f3c001;
+}
+.other-expence-card {
+  margin-top: 5px;
 }
