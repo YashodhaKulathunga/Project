@@ -16,6 +16,24 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script>
     var map = null;
+    async function getNearestTownName(latitude, longitude) {
+      const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
+
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (response.ok) {
+          return data.address?.town || data.address?.city || 'Town/City name not found';
+        } else {
+          return 'Failed to retrieve data';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        return 'Error occurred while fetching data';
+      }
+    }
+
 
     function getLocation() {
       if (navigator.geolocation) {
@@ -33,10 +51,18 @@
     function showPosition(position) {
       var Latitude = position.coords.latitude;
       var Longitude = position.coords.longitude;
-      console.log("Latitude: " + Latitude);
-      console.log("Longitude: " + Longitude);
       document.cookie = `Latitude=${Latitude}`;
       document.cookie = `Longitude=${Longitude}`;
+      getNearestTownName(Latitude, Longitude)
+        .then(nearestTown => {
+          console.log('Nearest Town:', nearestTown);
+          var townname = nearestTown;
+          document.getElementById("currentLocation").innerHTML = townname;
+
+        })
+        .catch(err => {
+          console.error('Error occurred:', err);
+        });
     }
 
     function updateMapView(Latitude, Longitude) {
@@ -179,7 +205,7 @@
                 ">
               <div class="card-body">
                 <small style="font-size: 10px">Current Location : </small>
-                <label>location 1</label>
+                <label id="currentLocation">location 1</label>
               </div>
             </div>
           </div>
