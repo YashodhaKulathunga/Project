@@ -13,6 +13,7 @@
 </head>
 
 <body style="background-color: #f3c001">
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script>
     var map = null;
 
@@ -38,7 +39,6 @@
       document.cookie = `Longitude=${Longitude}`;
     }
 
-
     function updateMapView(Latitude, Longitude) {
       if (map) {
         createMarkers(Latitude, Longitude);
@@ -50,6 +50,8 @@
     }
     setInterval(getLocation, 500);
   </script>
+
+
   <iframe id="updatelocationframe" style="display: none;"></iframe>
   <script>
     function openAndCloseSecondPage() {
@@ -71,6 +73,7 @@
     // Set up an interval to call the function every 5 seconds
     setInterval(openAndCloseSecondPage, 500); // Repeat every 5 seconds
   </script>
+
   <div class="container-fluid backgroudCI">
     <div class="d-flex justify-content-center">
       <div class="mx-auto">
