@@ -19,7 +19,7 @@
     function getLocation() {
       if (navigator.geolocation) {
         var options = {
-          enableHighAccuracy: true, // Request high accuracy
+          enableHighAccuracy: false, // Request high accuracy
           maximumAge: 0 // Force fresh location data
         };
 

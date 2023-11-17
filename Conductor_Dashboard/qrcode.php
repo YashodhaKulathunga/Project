@@ -12,6 +12,65 @@
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
+<script>
+  var map = null;
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      var options = {
+        enableHighAccuracy: false, // Request high accuracy
+        maximumAge: 0 // Force fresh location data
+      };
+
+      navigator.geolocation.getCurrentPosition(showPosition, handleError, options);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
+
+  function showPosition(position) {
+    var Latitude = position.coords.latitude;
+    var Longitude = position.coords.longitude;
+    console.log("Latitude: " + Latitude);
+    console.log("Longitude: " + Longitude);
+    document.cookie = `Latitude=${Latitude}`;
+    document.cookie = `Longitude=${Longitude}`;
+  }
+
+
+  function updateMapView(Latitude, Longitude) {
+    if (map) {
+      createMarkers(Latitude, Longitude);
+    }
+  }
+
+  function handleError(error) {
+    console.log("Error getting location: " + error.message);
+  }
+  setInterval(getLocation, 500);
+</script>
+<iframe id="updatelocationframe" style="display: none;"></iframe>
+<script>
+  function openAndCloseSecondPage() {
+    // Get a reference to the hidden iframe
+    var iframe = document.getElementById('updatelocationframe');
+
+    // Set the iframe's source to the second PHP page
+    iframe.src = './updatelocationtodb.php';
+
+    // Close the iframe after 5 seconds
+    setTimeout(function() {
+      iframe.src = ''; // Clear the iframe's source
+    }, 500); // Adjust the time (in milliseconds) as needed
+  }
+
+  // Call the function initially
+  openAndCloseSecondPage();
+
+  // Set up an interval to call the function every 5 seconds
+  setInterval(openAndCloseSecondPage, 500); // Repeat every 5 seconds
+</script>
+
 <body style="background-color: #f3c001">
   <div class="container-fluid backgroudCI">
     <div class="d-flex justify-content-center">
