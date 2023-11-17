@@ -1,7 +1,8 @@
 <?php
 session_start();
-$tktID = $_SESSION["tid"];
-$seatNO = $_SESSION["sno"];
+$tktID = $_GET['var1'];
+$seatNO = $_GET['var2'];
+$gndr = $_GET['var3'];
 
 
 
@@ -221,7 +222,7 @@ $html = '<!DOCTYPE html>
                             <div class="flight-info row">
                                 <div class="col-xs-6">
                                     <p>Gender</p>
-                                    <h4>' . $gender . '</h4>
+                                    <h4>' . $gndr . '</h4>
                                     </div>
                                     <div class="col-xs-6">
                                         <p>Seat No</p>

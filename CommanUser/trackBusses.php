@@ -12,19 +12,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     echo ("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT
-    tr.*,
-    s.Schedule_ID AS Reservation_Schedule_ID,
-    s.*,
-    b.*,
-    r.*
-FROM
-ticket_reservation AS tr
-JOIN schedule AS s ON Schedule_ID = s.Schedule_ID
-JOIN bus AS b ON s.Bus_ID = b.Bus_ID
-JOIN route AS r ON s.Route_ID = r.Route_ID
-WHERE
-tr.UserID = '$userID'";
+$sql = "SELECT * FROM ticket_reservation WHERE UserID = '$userID'";
+
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {
@@ -137,73 +126,45 @@ if (!$result) {
     </div>
     <!---Nav bar End-->
 
-    <div class="accordion-for-trackBus">
-        <div class="accordion" id="accordionExample">
-            <?php
-            $i = 1;
-            while ($row = mysqli_fetch_assoc($result)) {
-                $tid = $row['Ticket_ID'];
-                $sno = $row['SeatNO'];
-                $date = $row['Date'];
-                $stl = $row['Start_Location'];
-                $dtl = $row['Destination_Of_Location'];
-                $at = $row['Arrival_Time'];
-                $bus = $row['Bus_Registration_Number'];
-
-                echo $i;
-                echo '<div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#col' . $i . '"
-                    aria-expanded="false"
-                    aria-controls="col' . $i . '"
-                  >
-                    <div class="row text-center" style="margin-left: 20%">
-                      <div class="col">
-                        <h6>Date : <strong>' . $date . '</strong></h6>
-                      </div>
-                      <div class="col">
-                        <h6>Bus Route : <strong>' . $stl . ' - ' . $dtl . '</strong></h6>
-                      </div>
-                      <div class="col">
-                        <h6>Bus Register No : <strong>' . $bus . '</strong></h6>
-                      </div>
-                      <div class="col">
-                        <h6>Arraival Time : <strong>' . $at . '</strong></h6>
-                      </div>
-                    </div>
-                  </button>
-                </h2>
-                <div
-                  id="col' . $i . '"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div class="accordion-body text-center">
-                  <iframe
-                     src="./trackbussingle.php"
-                     width="100%"
-                     height="300"
-                     frameborder="0"
-                     ></iframe>  
-                 </div>
-                </div>
-              </div>';
-
-                $i++;
-            }
-            mysqli_close($conn);
-            ?>
+    <div class="container px-2 pv-2 h-screen items-center w-screen booked-Tickets-Table">
+        <div class="flex flex-center text-center text-white heading mb-2">
+            <h1 style="color: #000032;">Track your Booked Tickets</h1>
         </div>
-    </div>
-
-
-    </tbody>
-    </table>
-    </div>
+        <div class="text-center mt-4 table-for-tickets">
+            <table class="table text-center table-for-tickets">
+                <thead>
+                    <tr class="table-row-class">
+                        <th scope="col">Ticket ID</th>
+                        <th scope="col">Seat NO</th>
+                        <th scope="col">Download Ticket</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $shid = $row['Shedule_ID'];                        
+                        $link = './trackbussingle.php?var1=' . urlencode($shid);
+                        echo '<tr>';
+                        echo '<td>' . $row['Ticket_ID'] . '</td>';
+                        echo '<td>' . $row['SeatNO'] . '</td>';
+                        echo '<td>
+                        <div class="row">                        
+                        <div class="col">
+                        <a href="' . $link . '">
+                            <button type="submit" class="w-100 btn btn-lg btn-find-busses" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="button1">
+                                Track Bus
+                            </button>
+                        </a>
+                        </div>
+                        
+                    </div>
+                            </td>';
+                    }
+                    mysqli_close($conn);
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </div>
     <!--Footer Start-->
     <footer class="border-top footerbackground">
@@ -213,7 +174,7 @@ if (!$result) {
                     <img class="mb-2" src="images/logo2.jpg" alt="" width="125" height="87">
                 </span>
                 <span>
-                <p style="color: pink;">Make Your Journey Easy</p>
+                    <p style="color: pink;">Make Your Journey Easy</p>
 
                 </span>
                 <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
@@ -252,7 +213,7 @@ if (!$result) {
             </div>
             <div class="col-6 col-md">
                 <h5 style="color: pink;"">Links</h5>
-                <ul class="list-unstyled text-small">
+                <ul class=" list-unstyled text-small">
                     <li class="mb-1"><a class="nav-link" aria-current="page" href="#">
                             <span class="coustomIcon">
                                 <ion-icon name="home-outline"></ion-icon>
@@ -282,7 +243,7 @@ if (!$result) {
                             </span>
                         </a>
                     </li>
-                </ul>
+                    </ul>
             </div>
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Policies</h5>
@@ -295,8 +256,7 @@ if (!$result) {
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Contact us</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext"
-                            href="../contactus/index.php">
+                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext" href="../contactus/index.php">
                             <span class="coustomIcon">
                                 <ion-icon name="location-outline"></ion-icon>
                             </span>

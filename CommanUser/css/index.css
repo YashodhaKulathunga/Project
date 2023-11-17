@@ -831,3 +831,13 @@ body {
 .iconinchoosepackage {
   margin-top: 8px;
 }
+.map-div-loccation-tracking {
+  width: 100%;
+  height: 30vh;
+  border: 2rem solid #000032;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 25.5rem;
+}

@@ -83,22 +83,37 @@ $userID = $_SESSION["userid"];
                 <tbody>
                     <?php
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $_SESSION["tid"] = $row['Ticket_ID'];
-                        $_SESSION["sno"] = $row['SeatNO'];
+                        $tid = $row['Ticket_ID'];
+                        $sno = $row['SeatNO'];
+                        $gender = $row['Gender'];
+                        $link = 'ticket.php?var1=' . urlencode($tid) . '&var2=' . urlencode($sno) . '&var3=' . urlencode($gender);
                         echo '<tr>';
                         echo '<td>' . $row['Ticket_ID'] . '</td>';
                         echo '<td>' . $row['SeatNO'] . '</td>';
                         echo '<td>
-                            <a href="ticket.php">
-                            <button type="submit" class="w-100 btn btn-lg btn-find-busses" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="button1">
-                            Download Ticket
-                            </button>
+                        <div class="row">
+                        <div class="col">
+                            <a href="' . $link . '">
+                                <button type="submit" class="w-100 btn btn-lg btn-find-busses" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="button1">
+                                    Download Ticket
+                                </button>
                             </a>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="w-100 btn btn-lg btn-find-busses" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="button1">
+                                Track Bus
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="w-100 btn btn-lg btn-find-busses" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="button1">
+                                Cancel Ticket
+                            </button>
+                        </div>
+                    </div>
                             </td>';
                     }
                     mysqli_close($conn);
                     ?>
-
 
                 </tbody>
             </table>
@@ -111,7 +126,7 @@ $userID = $_SESSION["userid"];
                     <img class="mb-2" src="images/logo2.jpg" alt="" width="125" height="87">
                 </span>
                 <span>
-                <p style="color: pink;">Make Your Journey Easy</p>
+                    <p style="color: pink;">Make Your Journey Easy</p>
 
                 </span>
                 <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
@@ -150,7 +165,7 @@ $userID = $_SESSION["userid"];
             </div>
             <div class="col-6 col-md">
                 <h5 style="color: pink;"">Links</h5>
-                <ul class="list-unstyled text-small">
+                <ul class=" list-unstyled text-small">
                     <li class="mb-1"><a class="nav-link" aria-current="page" href="#">
                             <span class="coustomIcon">
                                 <ion-icon name="home-outline"></ion-icon>
@@ -180,7 +195,7 @@ $userID = $_SESSION["userid"];
                             </span>
                         </a>
                     </li>
-                </ul>
+                    </ul>
             </div>
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Policies</h5>
@@ -193,8 +208,7 @@ $userID = $_SESSION["userid"];
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Contact us</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext"
-                            href="../contactus/index.php">
+                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext" href="../contactus/index.php">
                             <span class="coustomIcon">
                                 <ion-icon name="location-outline"></ion-icon>
                             </span>
