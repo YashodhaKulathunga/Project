@@ -15,6 +15,8 @@ class Pessenger{
     private $feedback;
     private $Feedback_ID;
     private  $User_ID;
+    private $message;
+    private $contact_id;
 
 
     public function __construct($name = null, $email = null, $uid = null, $pno = null, $pwd = null, $pwdrepeat = null, $feedback = null) {
@@ -155,5 +157,27 @@ class Pessenger{
 
         return $feedbacks;
     } 
+    public function contactUs($name,$email,$message,$pno){
+        $dbcon = new DbConnector();
+        $con = $dbcon->getConnection();
+        $query="INSERT INTO contac_us(name,email,phone_number,message)VALUES(?,?,?,?) ";
+        $pstmt=$con->prepare($query);
+        $pstmt->bindValue(1,$name);
+        $pstmt->bindValue(2,$email);
+        $pstmt->bindValue(3,$pno);
+        $pstmt->bindValue(4,$message);
+        $pstmt->execute();
+        $result = $pstmt->fetch(PDO::FETCH_OBJ);
+        
+        if ($pstmt) {
+            return true;
+        } else {
+            return false;
+        }
+
+        
+
+
+    }
         
 }
