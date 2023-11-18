@@ -1,6 +1,11 @@
 <?php
 $fl = $_POST['from_location'];
 $tl = $_POST['to_location'];
+$distance = $_POST['distance'];
+$price = $_POST['price'];
+$duration = $_POST['duration'];
+
+
 
 
 require_once('./dompdf/autoload.inc.php');
@@ -144,18 +149,49 @@ $html = '<!DOCTYPE html>
                 </div>
                 <div class="ticket-body centerdiv">
                     <div class="flight-info row">
-                        <div class="col-xs-6">
-                            <p>From</p>
-                            <h4>' . $fl . '</h4>
-                            </div>
-                            <div class="col-xs-6">
-                                <p>To</p>
-                                <h4>' . $tl . '</h4>
-                                </div>
-                            </div>
-        
-                            
+                    <div style="text-align: center;">
+                    <!-- First Row with Two Columns -->
+                    <div style="display: inline-block;">
+                        <div style="width: 50%; display: inline-block;"><div class="col-xs-6">
+                        <p>From</p>
+                        <h4>' . $fl . '</h4>
                         </div>
+                        </div>
+                        <div style="width: 50%; display: inline-block;"><div class="col-xs-6">
+                        <p>To</p>
+                        <h4>' . $tl . '</h4>
+                        </div>
+                        </div>
+                    </div>
+                    <br> <!-- Adding a line break for the next row -->
+                
+                    <!-- Second Row with One Column -->
+                    <div style="display: inline-block; width: 100%;">
+                    <div class="col-xs-6">
+                                            <p>Price</p>
+                                            <h4>' . $price . '</h4>
+                                            </div>
+                    </div>
+                    <br> <!-- Adding a line break for the next row -->
+                
+                    <!-- Third Row with Two Columns -->
+                    <div style="display: inline-block;">
+                        <div style="width: 50%; display: inline-block;">
+                        <div class="col-xs-6">
+                                            <p>Distance</p>
+                                            <h4>' . $distance . '</h4>
+                                            </div>
+                        </div>
+                        <div style="width: 50%; display: inline-block;">
+                        <div class="col-xs-6">
+                                            <p>Duration</p>
+                                            <h4>' . $duration . '</h4>
+                                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </div> 
+                </div>
                     
                     </body>
                     

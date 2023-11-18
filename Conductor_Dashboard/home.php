@@ -143,28 +143,42 @@ $userID = $_SESSION["userid"];
                   border-radius: 5px;
                 ">
               <div class="card-body">
-                <form method="POST" action="printticket.php">
+                <form id="ticketForm" method="POST" action="printticket.php">
+                  <!-- Your existing form fields -->
                   <div class="row">
+                    <!-- From Location -->
                     <div class="col">
                       <label for="from" class="form-label">From:</label>
-                      <select name="from_location" class="form-select form-select-sm" aria-label="Large select example" style="background-color: #f3c001; color: #000032">
+                      <select name="from_location" id="from_location" class="form-select form-select-sm" aria-label="Large select example" style="background-color: #f3c001; color: #000032">
                         <option selected>Badulla</option>
-                        <option value="Badulla">Badulla</option>
-                        <option value="Kandy">Kandy</option>
+                        <option value="Bandarawela">Bandarawela</option>
+                        <option value="Diyathalawa">Diyathalawa</option>
+                        <option value="Haputale">Haputale</option>
+                        <option value="Belihuloya">Belihuloya</option>
+                        <option value="Balangoda">Balangoda</option>
+                        <option value="Pelmadulla">Pelmadulla</option>
                         <option value="Colombo">Colombo</option>
+                        <option value="Ratnapura">Ratnapura</option>
                       </select>
                     </div>
+                    <!-- To Location -->
                     <div class="col">
                       <label for="to" class="form-label">To:</label>
-                      <select name="to_location" class="form-select form-select-sm" aria-label="Large select example" style="background-color: #f3c001; color: #000032">
-                        <option selected>Colombo</option>
-                        <option value="Badulla">Badulla</option>
-                        <option value="Kandy">Kandy</option>
+                      <select name="to_location" id="to_location" class="form-select form-select-sm" aria-label="Large select example" style="background-color: #f3c001; color: #000032">
+                        <option selected>Badulla</option>
+                        <option value="Bandarawela">Bandarawela</option>
+                        <option value="Diyathalawa">Diyathalawa</option>
+                        <option value="Haputale">Haputale</option>
+                        <option value="Belihuloya">Belihuloya</option>
+                        <option value="Balangoda">Balangoda</option>
+                        <option value="Pelmadulla">Pelmadulla</option>
                         <option value="Colombo">Colombo</option>
+                        <option value="Ratnapura">Ratnapura</option>
                       </select>
                     </div>
                   </div>
 
+                  <!-- Table to display ticket details -->
                   <div class="row mt-4">
                     <div class="text-center">
                       <div class="container">
@@ -174,26 +188,134 @@ $userID = $_SESSION["userid"];
                             <div class="header__item">Price</div>
                             <div class="header__item">Duration</div>
                           </div>
-                          <div class="table-content">
-                            <div class="table-row">
-                              <div class="table-data">300Km</div>
-                              <div class="table-data">200 Rs</div>
-                              <div class="table-data">2 Hour</div>
-                            </div>
+                          <div class="table-content" id="ticketDetails">
+                            <!-- Ticket details will be displayed here -->
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="row mt-2">
-                    <div class="col text-center">
-                      <button type="submit" class="btn" style="background-color: #f3c001; color: #000032">
+
+                  <!-- Submit button -->
+
+                </form>
+              </div>
+
+              <script>
+                // Function to calculate and display ticket details
+                function generateTicketDetails() {
+                  // Get the selected 'from' and 'to' locations
+                  const fromLocation = document.getElementById('from_location').value;
+                  const toLocation = document.getElementById('to_location').value;
+
+                  // implementing new data set
+                  const distancesToColombo = {
+                    'Badulla': 214,
+                    'Bandarawela': 184,
+                    'Diyathalawa': 179,
+                    'Haputale': 170,
+                    'Belihuloya': 142,
+                    'Balangoda': 130,
+                    'Pelmadulla': 102,
+                    'Ratnapura': 86,
+                    'Colombo': 0
+                  };
+
+                  function calculateDistance(source, destination) {
+                    if (source === destination) {
+                      return '0Km';
+                    } else if (distancesToColombo.hasOwnProperty(source) && distancesToColombo.hasOwnProperty(destination)) {
+                      const distance = Math.abs(distancesToColombo[source] - distancesToColombo[destination]);
+                      return distance.toString() + 'Km';
+                    } else {
+                      return 'Distance not available';
+                    }
+                  }
+
+                  function calculatePrice(distance) {
+                    const basePrice = 300;
+
+                    return (basePrice + (distance * 10.28)).toFixed(0) + ' Rs'; // Adjust pricing logic as needed
+                  }
+
+                  function calculateDuration(distance) {
+                    const baseDuration = 0; // Base duration for the route (in hours)
+                    // Example duration calculation based on the given distances
+                    return (baseDuration + distance / 40).toFixed(1) + ' Hour'; // Adjust duration logic as needed
+                  }
+                  const ticketData = {};
+
+                  const stations = Object.keys(distancesToColombo);
+                  for (let i = 0; i < stations.length; i++) {
+                    for (let j = 0; j < stations.length; j++) {
+                      const source = stations[i];
+                      const destination = stations[j];
+                      const route = `${source}-${destination}`;
+
+                      const distance = calculateDistance(source, destination);
+                      const price = calculatePrice(Math.abs(distancesToColombo[source] - distancesToColombo[destination]));
+                      const duration = calculateDuration(Math.abs(distancesToColombo[source] - distancesToColombo[destination]));
+
+                      ticketData[route] = {
+                        distance,
+                        price,
+                        duration
+                      };
+                    }
+                  }
+                  // Example data for distance, price, and duration based on locations
+
+
+                  // Create the key to access the ticket data based on the selected locations
+                  const key = `${fromLocation}-${toLocation}`;
+
+                  // Retrieve ticket details based on the selected locations
+                  const {
+                    distance,
+                    price,
+                    duration
+                  } = ticketData[key] || {};
+
+                  // Display ticket details in the table
+                  const ticketDetailsElement = document.getElementById('ticketDetails');
+                  if (distance && price && duration) {
+                    ticketDetailsElement.innerHTML = `
+                  <div class="table-row">
+                  <div class="table-data" name="distance">${distance}</div>
+                  <div class="table-data">${price}</div>
+                  <div class="table-data">${duration}</div>
+                  </div>
+                  </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-2" style="background-color: #000032;">
+                    <div class="col text-center" style="width: 2rem; background-color: #f3c001;">
+                      <button type="submit" class="btn" style="background-color: #f3c001; color: #000032; width: 100%;">
                         Issue Ticket
                       </button>
                     </div>
                   </div>
+                    <input type="hidden" id="hiddenDistance" name="distance" value="${distance}">
+                    <input type="hidden" id="hiddenPrice" name="price" value="${price}">
+                    <input type="hidden" id="hiddenDuration" name="duration" value="${duration}">
                 </form>
-              </div>
+              </div>`;
+                  } else {
+                    ticketDetailsElement.innerHTML = ''; // Clear table if no details found
+                  }
+                }
+
+                // Add event listeners for change in dropdown selections
+                document.getElementById('from_location').addEventListener('change', generateTicketDetails);
+                document.getElementById('to_location').addEventListener('change', generateTicketDetails);
+
+                // Call generateTicketDetails initially to display initial details
+                generateTicketDetails();
+               
+              </script>
             </div>
           </div>
         </div>
