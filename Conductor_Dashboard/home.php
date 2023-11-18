@@ -1,3 +1,7 @@
+<?php
+session_start();
+$userID = $_SESSION["userid"];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -107,7 +111,7 @@
           <div class="cidashnavbar">
             <div class="row">
               <div class="text-center">
-                <h1 class="titleUsername">Welcome User</h1>
+                <h1 class="titleUsername">Welcome <?php echo $_SESSION["name"] ?></h1>
               </div>
             </div>
             <div class="row text-center">

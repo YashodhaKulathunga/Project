@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 function getPreviousLocation()
 {
     $previousLocation = @file_get_contents("previous_location.txt");
@@ -8,49 +10,56 @@ function getPreviousLocation()
     return json_decode($previousLocation, true);
 }
 
-// Function to save the current latitude and longitude to a file
 function saveCurrentLocation($latitude, $longitude)
 {
     $data = ["Latitude" => $latitude, "Longitude" => $longitude];
     file_put_contents("previous_location.txt", json_encode($data));
 }
 
-// Get the current latitude and longitude from cookies
 $currentLatitude = isset($_COOKIE['Latitude']) ? $_COOKIE['Latitude'] : "Latitude cookie not set";
 $currentLongitude = isset($_COOKIE['Longitude']) ? $_COOKIE['Longitude'] : "Longitude cookie not set";
 
-// Get the previous latitude and longitude from the file
 $previousLocation = getPreviousLocation();
 
 if ($currentLatitude !== $previousLocation['Latitude'] || $currentLongitude !== $previousLocation['Longitude']) {
-    // Replace with your actual database connection details
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "db1";
 
-    // Create a connection to the database
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Check the connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Replace these variables with actual values
-    $SHID = 'SH0004';  // Replace with the user's ID
-    $newLatitude = $currentLatitude;  // Replace with the new latitude value
-    $newLongitude = $currentLongitude;  // Replace with the new longitude value
+    $conductorID = $_SESSION["userid"];
 
-    // Update the Latitude and Longitude for the user
-    $sql = "UPDATE schedule SET Latitude = $newLatitude, Longitude = $newLongitude WHERE Schedule_ID  = '$SHID'";
+    $stmt = $conn->prepare("SELECT Schedule_ID FROM schedule WHERE Conductor_ID = ?");
+    $stmt->bind_param("s", $conductorID);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($conn->query($sql) === TRUE) {
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $SHID = $row['Schedule_ID'];
+
+        $sql = "UPDATE schedule SET Latitude = ?, Longitude = ? WHERE Schedule_ID = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("dds", $newLatitude, $newLongitude, $SHID);
+        $newLatitude = $currentLatitude;
+        $newLongitude = $currentLongitude;
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            $stmt->close();
+            $conn->close();
+            saveCurrentLocation($currentLatitude, $currentLongitude);
+            echo "Location updated successfully!";
+        } else {
+            echo "Error updating record: " . $conn->error;
+        }
     } else {
-        echo "Error updating record: " . $conn->error;
+        echo "No schedule found for this Conductor_ID";
     }
-
-    // Close the database connection
-    $conn->close();
-    saveCurrentLocation($currentLatitude, $currentLongitude);
 }

@@ -200,7 +200,7 @@ function LoginUser($conn, $email, $pwd)
             exit();
         } elseif ($role == 'conductor') {
 
-            header("Location:../conductorDashboard.php");
+            header("Location:../../Conductor_Dashboard/home.php");
         } else {
             echo "newwww";
         }
