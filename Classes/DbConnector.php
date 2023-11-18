@@ -1,17 +1,20 @@
 <?php
 
 namespace Classes;
+
 use PDO;
 use PDOException;
 
-class DbConnector {
+class DbConnector
+{
 
     private $host = "localhost";
     private $dbname = "db1";
     private $dbuser = "root";
     private $dbpw = "";
 
-    public function getConnection() {
+    public function getConnection()
+    {
         $dsn = "mysql:host=$this->host;dbname=$this->dbname";
         try {
             $con = new PDO($dsn, $this->dbuser, $this->dbpw);
@@ -20,4 +23,4 @@ class DbConnector {
             die("ERROR: " . $exc->getMessage());
         }
     }
-} 
+}
