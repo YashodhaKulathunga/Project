@@ -257,3 +257,11 @@
 .other-expence-card {
   margin-top: 5px;
 }
+.QRresult {
+  width: 100%;
+  height: 4rem;
+  background-color: #000032;
+  color: #000032;
+  font-size: 1rem;
+  font-weight: 400;
+}

@@ -159,6 +159,23 @@
                         <script type="text/javascript">
                           function onScanSuccess(qrCodeMessage) {
                             document.getElementById('result').innerHTML = '<span class="result">' + qrCodeMessage + '</span>';
+                            var xhr = new XMLHttpRequest();
+                            xhr.onreadystatechange = function() {
+                              if (xhr.readyState === XMLHttpRequest.DONE) {
+                                if (xhr.status === 200) {
+                                  var response = xhr.responseText;
+                                  document.getElementById('result').innerHTML = '<span class="QRresult">' + response + '</span>';
+                                } else {
+                                  // Handle error
+                                  console.error('Error: ' + xhr.status);
+                                }
+                              }
+                            };
+
+                            // Replace 'verify_ticket.php' with the actual path to your PHP verification script
+                            xhr.open('POST', 'qrvarify.php');
+                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                            xhr.send('reference_key=' + encodeURIComponent(qrCodeMessage));
                           }
 
                           function onScanError(errorMessage) {
