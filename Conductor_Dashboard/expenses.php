@@ -109,20 +109,113 @@
                   padding: 5%;
                   border-radius: 5px;
                 ">
+
+
               <div class="card-body mb-2">
-                <form action="process_payment.php" method="POST">
+                <?php
+                //require_once('../Classes/DbConnector.php');
+                require_once('../Classes/Conductor.php');
+
+                //use classes\DbConnector;
+                use classes\Conductor;
+
+
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                  if (isset($_POST['submit1'])) {
+                    if (empty($_POST['Bus_ID']) || empty($_POST['date']) || empty($_POST['travel_in_km']) || empty($_POST['fuel_in_liter']) || empty($_POST['expences'])) {
+                      echo '<div class="alert alert-danger" role="alert">Please Fill all feilds.</div>';
+                    } else {
+                      $Bus_ID = $_POST['Bus_ID'];
+                      $date = $_POST['date'];
+                      $travel_in_km = $_POST['travel_in_km'];
+                      $fuel_in_liter = $_POST['fuel_in_liter'];
+                      $expences = $_POST['expences'];
+
+                      $update = new Counductor(null, null, null, null, null, null, null, null, null);
+                      if ($update->fuel($Bus_ID, $date, $travel_in_km,  $fuel_in_liter, $expences)) {
+                        echo '<div class="alert alert-success">Updated!!</div>';
+                      } else {
+                        echo '<div class="alert alert-danger" role="alert">Bus_Id is not found in the database..</div>';
+                      }
+                    }
+                  } elseif (isset($_POST['submit'])) {
+                    //echo '<div class="alert alert-danger" role="alert">Fill the form throught Submit Button.</div>';
+                    if (empty($_POST['date']) || empty($_POST['expence_item']) || empty($_POST['expence_rp']) || empty($_POST['Bus_ID'])) {
+                      //echo '<div class="alert alert-danger" role="alert">Please Fill all feilds.</div>';
+                      $errors[] = "Please Fill all feilds";
+                    } else {
+                      $date = $_POST['date'];
+                      $expence_item = $_POST['expence_item'];
+                      $expence_rp = $_POST['expence_rp'];
+                      $Bus_ID = $_POST['Bus_ID'];
+
+                      $item = new Counductor(null, null, null, null, null, null, null, null, null);
+                      if ($item->expence($date, $expence_item,  $expence_rp, $Bus_ID)) {
+                        //echo '<div class="alert alert-success">Updated!!</div>';
+                        $success = 'Fuel expence Added Successfully';
+                      } else {
+                        //echo '<div class="alert alert-danger" role="alert">Bus_Id is not found in the database..</div>';
+                        $errors[] = "Bus_Id is not found in the database.";
+                      }
+                    }
+                  } else {
+                    //echo '<div class="alert alert-danger" role="alert">Fill the form throught Submit Button.</div>';
+                    $errors[] = "Fill the form throught Submit Button.";
+                  }
+                }/*else{
+                echo '<div class="alert alert-danger" role="alert">Submit the form through post method.</div>';
+              }*/
+
+                ?>
+
+                <form action="<?php echo $_SERVER["PHP_SELF"]; ?> " method="POST">
+
                   <div class="text-center mb-4">
                     <img class="icon-inside-form" src="./icons/fuel-gas-station-svgrepo-com.svg">
                   </div>
-                  <div class="text-center mb-4">
+                  <!--div class="text-center mb-4">
                     <h3 class="title-for-expense-form">Enter Total amount for Fuel</h3>
-                  </div>
-                  <div class="form-outline mb-4">
-                    <input type="number" name="Fuel" class="form-control form-control-lg" placeholder="Fuel Price in RS." />
-                  </div>
+                  </div-->
 
                   <div class="text-center mb-4">
-                    <button class="btn-Checkout-form">
+                    <h3 class="title-for-expense-form">Bus ID</h3>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="text" name="Bus_ID" id="validationCustom01" class="form-control form-control-lg" placeholder="Bus ID" />
+                  </div>
+                  <div class="text-center mb-4">
+                    <h3 class="title-for-expense-form">Date</h3>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="date" class="form-control mt-3" name="date" placeholder="Appoint Date" aria-label="Departure Date" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="text-center mb-4">
+                    <h3 class="title-for-expense-form">Travel In Km</h3>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="text" class="form-control" name="travel_in_km" class="form-control form-control-lg" placeholder="Travel in Km" />
+                  </div>
+                  <div class="text-center mb-4">
+                    <h3 class="title-for-expense-form">Liters of Fuel</h3>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="text" name="fuel_in_liter" id="validationCustom01" class="form-control form-control-lg" placeholder="Liters of Fuel" />
+                  </div>
+                  <div class="text-center mb-4">
+                    <h3 class="title-for-expense-form">Expence of Fuel in Rupees</h3>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="text" id="expences" name="expences" class="form-control form-control-lg" placeholder="Expence of Fuel in Rupees" />
+                  </div>
+
+
+
+                  <!--div class="text-center mb-4">
+                    <input type="number" name="Fuel" class="form-control form-control-lg" placeholder="Fuel Price in RS." />
+                  </div-->
+
+                  <div class="text-center mb-4">
+                    <button class="btn-Checkout-form" name="submit1">
                       Add Expence
                     </button>
                   </div>
@@ -131,6 +224,7 @@
             </div>
           </div>
         </div>
+
         <div class="row ticketGenarator nextDiv">
           <div class="col text-center ticketGenarator mt-5">
             <div class="text-center text-light mb-3" style="
@@ -140,25 +234,90 @@
                   border-radius: 5px;
                 ">
               <div class="card-body mb-2">
-                <form action="process_payment.php" method="POST">
+                <?php
+                if (isset($errors) && count($errors) > 0) {
+                  foreach ($errors as $error_msg) {
+                    echo '<div class="alert alert-danger">' . $error_msg . '</div>';
+                  }
+                }
+                if (isset($success)) {
+                  echo '<div class="alert alert-success">' . $success . '</div>';
+                }
+                ?>
+                <?php
+                // require_once('./Classes/DbConnector.php');
+                //require_once('../Classes/Conductor.php');
+
+
+                // use classes\DbConnector;
+
+                /* if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        if (isset($_POST['submit'])){
+            if (empty($_POST['date']) || empty($_POST['expence_item']) || empty($_POST['expence_rp']) || empty($_POST['Bus_ID'])){
+                echo '<div class="alert alert-danger" role="alert">Please Fill all feilds.</div>';
+            }else{
+                $date = $_POST['date'];
+                $expence_item = $_POST['expence_item'];
+                $expence_rp = $_POST['expence_rp'];
+                $Bus_ID = $_POST['Bus_ID'];
+
+                $item= new Counductor(null, null, null, null, null, null, null,null,null);
+                if($item->expence($date, $expence_item,  $expence_rp ,$Bus_ID)){
+                    echo '<div class="alert alert-success">Updated!!</div>';
+                }else{
+                    echo '<div class="alert alert-danger" role="alert">Bus_Id is not found in the database..</div>';
+                }
+
+            }
+
+        }else {
+                echo '<div class="alert alert-danger" role="alert">Fill the form throught Submit Button.</div>';
+            }
+
+   // }else {
+            //echo '<div class="alert alert-danger" role="alert">Fill the form throught POST method.</div>';
+        }*/
+
+
+
+
+
+
+                ?>
+                <form action="<?php echo $_SERVER["PHP_SELF"]; ?> " method="POST">
                   <div class="text-center mb-4">
                     <img class="icon-inside-form" src="./icons/money-send-svgrepo-com.svg">
+                  </div>
+
+
+                  <div class="text-center mb-4">
+                    <h3 class="title-for-expense-form">Bus ID</h3>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="text" name="Bus_ID" id="validationCustom01" class="form-control form-control-lg" placeholder="Bus ID" />
+                  </div>
+                  <div class="text-center mb-4">
+                    <h3 class="title-for-expense-form">Date</h3>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="date" class="form-control mt-3" name="date" placeholder="Appoint Date" aria-label="Departure Date" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="text-center mb-4">
+                    <h3 class="title-for-expense-form">Expence Item</h3>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="text" name="expence_item" id="validationCustom01" class="form-control form-control-lg" placeholder="Expence Item" />
                   </div>
                   <div class="text-center mb-4">
                     <h3 class="title-for-expense-form">Amount of other Expence</h3>
                   </div>
                   <div class="form-outline mb-4">
-                    <input type="number" name="Fuel" class="form-control form-control-lg" placeholder="Other Price in RS." />
-                  </div>
-                  <div class="text-center mb-4">
-                    <h3 class="title-for-expense-form">Description</h3>
-                  </div>
-                  <div class="form-outline mb-4">
-                    <input type="number" name="Fuel" class="form-control form-control-lg" placeholder="Description" />
+                    <input type="number" id="inputseats" name="expence_rp" class="form-control form-control-lg" placeholder="Other Price in RS." />
                   </div>
 
+
                   <div class="text-center mb-4">
-                    <button class="btn-Checkout-form">
+                    <button class="btn-Checkout-form" name="submit">
                       Add Expence
                     </button>
                   </div>
