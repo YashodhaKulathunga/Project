@@ -126,7 +126,7 @@ if ($result !== false) {
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a href="./SeatSelection.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
+                        <a href="./commanUser.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
                     </div>
                 </div>
             </div>
@@ -166,7 +166,7 @@ if ($result !== false) {
                     <!-- User Detail Update Card -->
 
                     <div class="card custom-card">
-                        < <div class="card-body">
+                        <div class="card-body">
 
                             <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                                 <?php
@@ -221,10 +221,10 @@ if ($result !== false) {
                                 </div>
                             </form>
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
 
 

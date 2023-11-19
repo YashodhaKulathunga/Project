@@ -189,7 +189,7 @@ session_start();
                     <img class="mb-2" src="images/logo2.jpg" alt="" width="125" height="87">
                 </span>
                 <span>
-                <p style="color: pink;">Make Your Journey Easy</p>
+                    <p style="color: pink;">Make Your Journey Easy</p>
 
                 </span>
                 <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
@@ -228,7 +228,7 @@ session_start();
             </div>
             <div class="col-6 col-md">
                 <h5 style="color: pink;"">Links</h5>
-                <ul class="list-unstyled text-small">
+                <ul class=" list-unstyled text-small">
                     <li class="mb-1"><a class="nav-link" aria-current="page" href="#">
                             <span class="coustomIcon">
                                 <ion-icon name="home-outline"></ion-icon>
@@ -258,7 +258,7 @@ session_start();
                             </span>
                         </a>
                     </li>
-                </ul>
+                    </ul>
             </div>
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Policies</h5>
@@ -271,8 +271,7 @@ session_start();
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Contact us</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext"
-                            href="../contactus/index.php">
+                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext" href="../contactus/index.php">
                             <span class="coustomIcon">
                                 <ion-icon name="location-outline"></ion-icon>
                             </span>
