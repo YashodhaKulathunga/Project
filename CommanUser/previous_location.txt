@@ -1,1 +1,1 @@
-{"Latitude":"6.9808674","Longitude":"81.0774524"}
+{"Latitude":"6.9809197","Longitude":"81.0774314"}

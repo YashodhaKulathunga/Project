@@ -110,12 +110,89 @@ session_start();
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a href="./notificatiop.php"><ion-icon name="notifications-outline" class="NAVLINKSICON"></ion-icon></a>
+                        <?php
+                        if (isset($_SESSION["name"])) {
+                            $userID = $_SESSION["userid"]; // Assuming you have a user ID stored in session
+
+                            // Connect to the database (assuming you have a valid $conn1 connection)
+                            // Perform a query to check for unread notifications for the logged-in user
+                            $sql = "SELECT COUNT(*) AS unread_notifications FROM notification WHERE User_ID = ? AND Status = 'Unseen'";
+                            $stmt = $conn1->prepare($sql);
+                            $stmt->bind_param("i", $userID);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            $row = $result->fetch_assoc();
+                            $unreadNotifications = $row['unread_notifications'];
+
+                            // Check if there are unread notifications, then display the count on the notification icon
+                            if ($unreadNotifications > 0) {
+                                // Display a badge or indicator on the notification icon
+                                echo '<a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <ion-icon name="notifications-outline" class="NAVLINKSICON" style="position: absolute; margin-left:-2rem;"></ion-icon>
+                                <span class="badge bg-danger" style="position: relative; margin-top: -5rem;">' . $unreadNotifications . '</span>
+                        </a>';
+                            } else {
+                                // Display the notification icon without a badge
+                                echo '<a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <ion-icon name="notifications-outline" class="NAVLINKSICON"></ion-icon>
+                        </a>';
+                            }
+                        } else {
+                            // If the user is not logged in, display the notification icon without a badge
+                            echo '<a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <ion-icon name="notifications-outline" class="NAVLINKSICON"></ion-icon>
+                        </a>';
+                        }
+                        ?>
                         <a href="./profile.php"><ion-icon name="person-outline" class="NAVLINKSICON"></ion-icon></a>
                     </div>
                 </div>
+
             </div>
         </nav>
+    </div>
+    <div class="row">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Unseen Notifications</h3>
+                        <ul>
+                            <?php
+                            // Assuming you have established a database connection
+
+                            
+                            $userID = $_SESSION["userid"]; // Assuming you have stored the user ID in session
+                            $query = "SELECT * FROM notification WHERE User_ID = '$userID' AND Status = 'Unseen'";
+                            $result = mysqli_query($conn1, $query);
+
+                            if ($result && mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<li>" . $row['message'] . "</li>";
+                                }
+                                
+                                $updateQuery = "UPDATE notification SET Status = 'Seen' WHERE User_ID = '$userID' AND Status = 'Unseen'";
+                                $updateResult = mysqli_query($conn1, $updateQuery);
+                                if (!$updateResult) {
+                                    echo "Failed to update notification status: " . mysqli_error($conn);
+                                }
+                            } else {
+                                echo "<p>No unseen notifications</p>";
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!---Nav bar End-->
     <!--Body Part Starts-->

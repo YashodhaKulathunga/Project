@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,6 +65,9 @@
                     if (preg_match("/^SH\d+-\d+-\w+-\w+\d+$/", $seat)) {
                         list($scheduleID, $seatNo, $gender, $userID) = explode('-', $seat);
                         $refrencID = $nextTicketID . $seat . $currentDate . $gender . $currentTime;
+                        $_SESSION["seatNoforNitification"] = $seatNo;
+                        $_SESSION["GendeforNotification"] = $gender;
+                        $_SESSION["Dateforntification"] = $currentDate;
                         $stmt->bind_param("ssssssssss", $scheduleID, $seatNo, $gender, $nextTicketID, $price, $currentDate, $currentTime,  $refrencID, $userID, $status);
                         if ($stmt->execute()) {
                             echo "Inserted successfully.";
