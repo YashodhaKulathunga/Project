@@ -24,69 +24,35 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body>
-    <!--Navbar Start-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary navBar">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">JourneyEase</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mb-lg-0 ml-auto">
-              <li class="nav-item homeTab homeIcon">
-                <a class="nav-link" aria-current="page" href="commanUser.html" >
-                  <span class="coustomIcon ">
-                      <ion-icon name="home-outline"></ion-icon>
-                  </span>
-                  <span class="coustomText">
-                      Home
-                  </span>
-                </a>
-              </li>
-              <li class="nav-item aboutUSIcon">
-                  <a class="nav-link" aria-current="page" href="aboutus.html">
-                      <span class="coustomIcon">
-                          <ion-icon name="accessibility-outline"></ion-icon>
-                      </span>
-                      <span class="coustomText">
-                          About Us
-                      </span>
-                  </a>
-              </li>
-              <li class="nav-item contactUsIcon ">
-                  <a class="nav-link" aria-current="page" href="contactus.html">
-                      <span class="coustomIcon">
-                          <ion-icon name="headset-outline"></ion-icon>
-                      </span>
-                      <span class="coustomText">
-                          Contact Us
-                      </span>
-                  </a>
-              </li>            
-            </ul>
-            <a href="findTickets.html">          
-              <button class="btn btn-outline-warning buyticket-button" type="submit">
-                Buy Tickets
-              </button>
-              </a>
-            </form>
-          </div>
-        </div>
-      </nav>
-    <!--Navbar End-->
+<body><!--Nav bar start-->
+   
+   <nav class="navbar navbar-expand-lg NAVBAR">
+       <div class="container-fluid">
+           <a class="navbar-brand" href="#"><img src="./Images/Logo.png" alt="Logo" width="100" height="69" class="d-inline-block align-text-top" /></a>
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+           </button>
+           <div class="collapse navbar-collapse" id="navbarScroll">
+               <ul class="navbar-nav me-auto d-flex align-items-center" style="--bs-scroll-height: 100px">
+                   <li class="nav-item align-items-center">
+                       <div class="d-flex align-items-center">
+                           <p class="SubPageTitle FIRST-NAVLINK">
+                           About Us
+                           </p>
+                       </div>
+                   </li>
+               </ul>
+               <div class="d-flex">
+                   <a href="./commanUser.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
+               </div>
+           </div>
+       </div>
+   </nav>
+
+<!---Nav bar End-->
     
     <!--Niwandi Content Start-->
     <div class="heading mt-2">
-        <h1>About Us</h1>
         <p><b>Our aim is to provide long-distance travelers with the convenience
                 of booking bus seats to anywhere in Sri Lanka from a single, centralized platform.</b></p>
 
