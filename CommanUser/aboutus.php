@@ -24,69 +24,35 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body>
-    <!--Navbar Start-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary navBar">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">JourneyEase</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mb-lg-0 ml-auto">
-              <li class="nav-item homeTab homeIcon">
-                <a class="nav-link" aria-current="page" href="commanUser.html" >
-                  <span class="coustomIcon ">
-                      <ion-icon name="home-outline"></ion-icon>
-                  </span>
-                  <span class="coustomText">
-                      Home
-                  </span>
-                </a>
-              </li>
-              <li class="nav-item aboutUSIcon">
-                  <a class="nav-link" aria-current="page" href="aboutus.html">
-                      <span class="coustomIcon">
-                          <ion-icon name="accessibility-outline"></ion-icon>
-                      </span>
-                      <span class="coustomText">
-                          About Us
-                      </span>
-                  </a>
-              </li>
-              <li class="nav-item contactUsIcon ">
-                  <a class="nav-link" aria-current="page" href="contactus.html">
-                      <span class="coustomIcon">
-                          <ion-icon name="headset-outline"></ion-icon>
-                      </span>
-                      <span class="coustomText">
-                          Contact Us
-                      </span>
-                  </a>
-              </li>            
-            </ul>
-            <a href="findTickets.html">          
-              <button class="btn btn-outline-warning buyticket-button" type="submit">
-                Buy Tickets
-              </button>
-              </a>
-            </form>
-          </div>
-        </div>
-      </nav>
-    <!--Navbar End-->
+<body><!--Nav bar start-->
+   
+   <nav class="navbar navbar-expand-lg NAVBAR">
+       <div class="container-fluid">
+           <a class="navbar-brand" href="#"><img src="./Images/Logo.png" alt="Logo" width="100" height="69" class="d-inline-block align-text-top" /></a>
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+           </button>
+           <div class="collapse navbar-collapse" id="navbarScroll">
+               <ul class="navbar-nav me-auto d-flex align-items-center" style="--bs-scroll-height: 100px">
+                   <li class="nav-item align-items-center">
+                       <div class="d-flex align-items-center">
+                           <p class="SubPageTitle FIRST-NAVLINK">
+                           About Us
+                           </p>
+                       </div>
+                   </li>
+               </ul>
+               <div class="d-flex">
+                   <a href="./commanUser.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
+               </div>
+           </div>
+       </div>
+   </nav>
+
+<!---Nav bar End-->
     
     <!--Niwandi Content Start-->
     <div class="heading mt-2">
-        <h1>About Us</h1>
         <p><b>Our aim is to provide long-distance travelers with the convenience
                 of booking bus seats to anywhere in Sri Lanka from a single, centralized platform.</b></p>
 
@@ -145,122 +111,130 @@
     <!--Footer Start-->
     <footer class="border-top footerbackground">
         <div class="row">
-          <div class="col-12 col-md ">
-            <span>
-            <img class="mb-2" src="../assets/brand/bootstrap-logo.svg" alt="" width="24" height="19">
-            </span>
-            <spa>
-                <p>Make Your Journy Easy</p>
-            </spa>
-            <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
-            <div class="row ">
-                <div class="container firstCol">
-                <div class="col">
-                    <a class="nav-link" aria-current="page" href="#">
-                        <span class="coustomIcon SMLF">
-                            <ion-icon name="logo-facebook">
-                        </span>                        
-                    </a> 
-                </div>
-                <div class="col">
-                    <a class="nav-link" aria-current="page" href="#">
-                        <span class="coustomIcon SMLI">
-                            <ion-icon name="logo-instagram">
-                        </span>                        
-                    </a> 
-                </div>
-                <div class="col">
-                    <a class="nav-link" aria-current="page" href="#">
-                        <span class="coustomIcon SMLW">
-                            <ion-icon name="logo-whatsapp">
-                        </span>                        
-                    </a> 
-                </div>
-                <div class="col ">          
-                    <a class="nav-link" aria-current="page" href="#">
-                        <span class="coustomIcon SMLT">
-                            <ion-icon name="logo-twitter">
-                        </span>                        
-                    </a>    
-                </div>
+            <div class="col-12 col-md ">
+                <span>
+                    <img class="mb-2" src="images/logo2.jpg" alt="" width="125" height="87">
+                </span>
+                <span>
+                    <p style="color: pink;">Make Your Journey Easy</p>
+
+                </span>
+                <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
+                <div class="row ">
+                    <div class="container firstCol">
+                        <div class="col">
+                            <a class="nav-link" aria-current="page" href="#">
+                                <span class="coustomIcon SMLF">
+                                    <ion-icon name="logo-facebook">
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a class="nav-link" aria-current="page" href="#">
+                                <span class="coustomIcon SMLI">
+                                    <ion-icon name="logo-instagram">
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a class="nav-link" aria-current="page" href="#">
+                                <span class="coustomIcon SMLW">
+                                    <ion-icon name="logo-whatsapp">
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col ">
+                            <a class="nav-link" aria-current="page" href="#">
+                                <span class="coustomIcon SMLT">
+                                    <ion-icon name="logo-twitter">
+                                </span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-          </div>
-          <div class="col-6 col-md">
-            <h5>Links</h5>
-            <ul class="list-unstyled text-small">
-              <li class="mb-1"><a class="nav-link" aria-current="page" href="#">
-                <span class="coustomIcon">
-                    <ion-icon name="home-outline"></ion-icon>
-                </span>
-                <span class="coustomText">
-                    Home
-                </span>
-              </a>
-            </li>
-              <li class="mb-1"> <a class="nav-link" aria-current="page" href="#">
-                <span class="coustomIcon">
-                    <ion-icon name="accessibility-outline"></ion-icon>
-                </span>
-                <span class="coustomText">
-                    About Us
-                </span>
-            </a>
-            </li>
-              <li class="mb-1">
-                <a class="nav-link" aria-current="page" href="#">
-                    <span class="coustomIcon">
-                        <ion-icon name="headset-outline"></ion-icon>
-                    </span>
-                    <span class="coustomText">
-                        Contact Us
-                    </span>
-                </a>
-        </li>
-              </ul>
-          </div>
-          <div class="col-6 col-md">
-            <h5>Policies</h5>
-            <ul class="list-unstyled text-small">
-              <li class="mb-1"><a class="link text-decoration-none listtext" href="#">privacy Policy</a></li>
-              <li class="mb-1"><a class="link text-decoration-none listtext" href="#">Terms & Conditions</a></li>
-              <li class="mb-1"><a class="link text-decoration-none listtext" href="#">Ticket Policy</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-md">
-            <h5>Contact us</h5>
-            <ul class="list-unstyled text-small">
-              <li class="mb-1"><a class="link-secondary text-decoration-none listtext" href="#">
-                <span class="coustomIcon">
-                    <ion-icon name="location-outline"></ion-icon>
-                </span>
-                <span class="coustomText listtext2">
-                    No2, Passara Raod, Badulla.
-                </span>
-            </a>
-        </li>
-              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">
-                <span class="coustomIcon">
-                    <ion-icon name="call-outline"></ion-icon>
-                </span>
-                <span class="coustomText listtext2">
-                    +94123987456
-                </span>
-            </a>
-        </li>
-              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">
-                <span class="coustomIcon">
-                    <ion-icon name="at-outline"></ion-icon>
-                </span>
-                <span class="coustomText listtext2">
-                    EaseTravales@Bus.com
-                </span>
-            </a>
-        </li>              
-            </ul>
-          </div>
+            <div class="col-6 col-md">
+                <h5 style="color: pink;"">Links</h5>
+                <ul class=" list-unstyled text-small">
+                    <li class="mb-1"><a class="nav-link" aria-current="page" href="commanUser.php">
+                            <span class="coustomIcon">
+                                <ion-icon name="home-outline"></ion-icon>
+                            </span>
+                            <span class="coustomText">
+                                Home
+                            </span>
+                        </a>
+                    </li>
+                    <li class="mb-1"> <a class="nav-link" aria-current="page" href="aboutus.php">
+                            <span class="coustomIcon">
+                                <ion-icon name="accessibility-outline"></ion-icon>
+                            </span>
+
+                            <span class="coustomText">About Us </span></a>
+
+
+
+                    </li>
+                    <li class="mb-1">
+                        <a class="nav-link" aria-current="page" href="Contactus.php">
+                            <span class="coustomIcon">
+                                <ion-icon name="headset-outline"></ion-icon>
+                            </span>
+                            <span class="coustomText">
+                                Contact Us
+                            </span>
+                        </a>
+                    </li>
+                    </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5 style="color: pink;">Policies</h5>
+                <ul class="list-unstyled text-small">
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="privacyPolicy.php">privacy Policy</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="Terms.php">Terms & Conditions</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="TicketPolicy.php">Ticket Policy</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5 style="color: pink;">Contact us</h5>
+                <ul class="list-unstyled text-small">
+                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext" href="../contactus/index.php">
+                            <span class="coustomIcon">
+                                <ion-icon name="location-outline"></ion-icon>
+                            </span>
+                            <span class="coustomText listtext2">
+                                No2, Passara Raod, Badulla.
+                            </span>
+                        </a>
+                    </li>
+                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">
+                            <span class="coustomIcon">
+                                <ion-icon name="call-outline"></ion-icon>
+                            </span>
+                            <span class="coustomText listtext2">
+                                +94123987456
+                            </span>
+                        </a>
+                    </li>
+                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">
+                            <span class="coustomIcon">
+                                <ion-icon name="at-outline"></ion-icon>
+                            </span>
+                            <span class="coustomText listtext2">
+                                EaseTravales@Bus.com
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </footer>
+    </footer>
+    <script>
+        $(document).ready(function() {
+            $('#myModal').modal('show');
+        });
+    </script>
+
     <!--Footer End-->
 </body>
 
