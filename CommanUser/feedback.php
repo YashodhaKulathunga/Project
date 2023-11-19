@@ -126,7 +126,7 @@ if ($result !== false) {
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a href="./SeatSelection.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
+                        <a href="./commanUser.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
                     </div>
                 </div>
             </div>
@@ -140,8 +140,8 @@ if ($result !== false) {
                 <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse sideinavbar-profile-page">
                     <div class="position-sticky">
                         <div class="list-group list-group-flush mt-4 side-navbar-for-find-routes">
-                            <a class="list-group-item list-group-item-action side-navbar-item-profile-page-active" href="./profile.php"><span>Profile</span></a>
-                            <a class="mt-2 list-group-item list-group-item-action side-navbar-item-profile-page" href="./feedback.php"><span>Feedback</span></a>
+                            <a class="list-group-item list-group-item-action side-navbar-item-profile-page" href="./profile.php"><span>Profile</span></a>
+                            <a class="mt-2 list-group-item list-group-item-action side-navbar-item-profile-page-active" href="./feedback.php"><span>Feedback</span></a>
                             <a class="mt-2 list-group-item list-group-item-action side-navbar-item-profile-page-logout" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Log Out</span></a>
                         </div>
                     </div>
@@ -155,7 +155,7 @@ if ($result !== false) {
                             <nav class="bread-card p-3 mb-4">
                                 <ol class="breadcrumb mb-0 text-center">
                                     <li class="active">
-                                        <h5 class="SubPageTitle-heading FIRST-NAVLINK">Update User Details</h5>
+                                        <h5 class="SubPageTitle-heading FIRST-NAVLINK">Send us Feedback</h5>
                                     </li>
                                 </ol>
                             </nav>
@@ -166,72 +166,62 @@ if ($result !== false) {
                     <!-- User Detail Update Card -->
 
                     <div class="card custom-card">
-                        < <div class="card-body">
+                        <div class="card-body">
+                            <?php
+                            //$User_ID=USER0005;
 
-                            <form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                                <?php
-                                if (isset($errors) && count($errors) > 0) {
-                                    foreach ($errors as $error_msg) {
-                                        echo '<div class="alert alert-danger">' . $error_msg . '</div>';
+                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                if (isset($_POST['submit'])) {
+                                    if (empty($_POST['email']) || empty($_POST['feedback'])) {
+                                        echo '<div class="alert alert-danger" role="alert">Please Fill all feilds.</div>';
+                                    } else {
+                                        $email = $_POST['email'];
+                                        $feedback = $_POST['feedback'];
+
+                                        $pesseger = new Pessenger(null, null, null, null, null, null, null, null, null);
+                                        if ($pesseger->Feedback($email, $feedback)) {
+                                            echo '<div class="alert alert-success">Thank You!!,Your Feedback.</div>';
+                                        } else {
+                                            echo '<div class="alert alert-danger" role="alert">Email is not found in the database..</div>';
+                                        }
                                     }
+                                } else {
+                                    echo '<div class="alert alert-danger" role="alert">Fill the form throught Submit Button.</div>';
                                 }
-                                if (isset($success)) {
-                                    echo '<div class="alert alert-success">' . $success . '</div>';
-                                }
-                                ?>
-
-                                <div class="mb-4 row">
-                                    <label for="name" class="col-sm-2 col-form-label">Name</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" placeholder=" name" name="name" value="<?php echo $name; ?>">
-                                    </div>
-                                </div>
+                            } else {
+                                //echo '<div class="alert alert-danger" role="alert">Fill the form throught POST method.</div>';
+                            }
 
 
-                                <div class="mb-4 row">
+                            ?>
+                            <!---profile card--->
+                            <form class="form-horizontal" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
+                                <div class="mb-3 row">
                                     <label for="name" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" name="email" placeholder="Email" value="<?php echo $email; ?>">
+                                        <input type="text" class="form-control" id="email" placeholder="name@example.com" name="email">
                                     </div>
                                 </div>
-                                <div class="mb-4 row">
-                                    <label for="phoneNumber" class="col-sm-2 col-form-label">Username</label>
+                                <div class="mb-3 row">
+                                    <label for="message" class="col-sm-2 col-form-label"> Feedback Message</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" value="<?php echo $uid; ?>">
-                                    </div>
-
-                                </div>
-                                <div class="mb-4 row">
-                                    <label for="phoneNumber" class="col-sm-2 col-form-label">Phone number</label>
-                                    <div class="col-sm-10">
-                                        <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter Phone Number" name="phone_no" value="<?php echo $pno; ?>">
-                                    </div>
-
-                                </div>
-                                <div class="mb-4 row">
-                                    <label for="password" class="col-sm-2 col-form-label">Password</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="password" name="password" value="<?php echo $pwd; ?>" placeholder="Enter Password" required>
+                                        <textarea class="form-control" id="name" rows="6" placeholder="feedback" name="feedback" style="height: 150px;"></textarea>
                                     </div>
                                 </div>
-
-
                                 <div class="pt-3">
-                                    <button type="submit" class="btn btn-primary update-button" name="update">Update</button>
+                                    <button type="submit" class="btn btn-primary update-button" name="submit">Submit</button>
                                 </div>
                             </form>
-
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-
-
-
-        </div>
-        </div>
     </section>
+
+
+
+
 </body>
 
 </html>

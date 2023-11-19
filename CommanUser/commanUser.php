@@ -110,8 +110,8 @@ session_start();
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <ion-icon name="notifications-outline" class="NAVLINKSICON"></ion-icon>
-                        <ion-icon name="person-outline" class="NAVLINKSICON"></ion-icon>
+                        <a href="./notificatiop.php"><ion-icon name="notifications-outline" class="NAVLINKSICON"></ion-icon></a>
+                        <a href="./profile.php"><ion-icon name="person-outline" class="NAVLINKSICON"></ion-icon></a>
                     </div>
                 </div>
             </div>
