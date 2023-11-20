@@ -235,7 +235,6 @@ body {
   height: 200px;
   padding-top: 25px;
   margin-top: 30px;
-  
 }
 .side-navbar-for-find-routes {
   background-color: #f3c001;
@@ -841,4 +840,11 @@ body {
   align-items: center;
   margin: 0 auto;
   margin-top: 25.5rem;
+}
+.notificationDiv {
+  margin-top: 14.5rem;
+  margin-left: 60%;
+  position: fixed;
+  background-color: #f3c001;
+  color: #000032;
 }
