@@ -152,43 +152,61 @@ session_start();
         </nav>
     </div>
     <div class="row">
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" style="margin-top: 6.5rem; margin-left: 25rem; position: fixed;" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+                <div class="modal-content" style="background-color: #f3c001;">
                     <div class="modal-body">
-                        <h3>Unseen Notifications</h3>
-                        <ul>
+                        <div class="row">
+                            <h3>Unseen Notifications</h3>
                             <?php
-                            // Assuming you have established a database connection
-
-                            
                             $userID = $_SESSION["userid"]; // Assuming you have stored the user ID in session
                             $query = "SELECT * FROM notification WHERE User_ID = '$userID' AND Status = 'Unseen'";
                             $result = mysqli_query($conn1, $query);
 
                             if ($result && mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<li>" . $row['message'] . "</li>";
+                                    echo '<div class="card mt-1" style="background-color: #000032; color: #f3c001;">
+                                            <div class="card-body">
+                                                ' . $row['message'] . '
+                                            </div>
+                                        </div>';
                                 }
-                                
+                            } else {
+                                echo "<p>No unseen notifications</p>";
+                            }
+                            ?>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <h3>Seen Notifications</h3>
+                            <?php
+                            $userID2 = $_SESSION["userid"]; // Assuming you have stored the user ID in session
+                            $query2 = "SELECT * FROM notification WHERE User_ID = '$userID2' AND Status = 'Seen'";
+                            $result = mysqli_query($conn1, $query2);
+
+                            if ($result && mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo '<div class="card mt-1" style="background-color: #000032; color: #f3c001;">
+                                            <div class="card-body">
+                                                ' . $row['message'] . '
+                                            </div>
+                                        </div>';
+                                }
                                 $updateQuery = "UPDATE notification SET Status = 'Seen' WHERE User_ID = '$userID' AND Status = 'Unseen'";
                                 $updateResult = mysqli_query($conn1, $updateQuery);
                                 if (!$updateResult) {
                                     echo "Failed to update notification status: " . mysqli_error($conn);
                                 }
                             } else {
-                                echo "<p>No unseen notifications</p>";
+                                echo "<p>No Seen notifications</p>";
                             }
                             ?>
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="d-flex justify-content-center align-item-center">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
