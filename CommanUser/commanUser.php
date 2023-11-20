@@ -104,8 +104,8 @@ session_start();
                             </a>
                             <ul class="dropdown-menu dropdown-bg-navbar drop-down-list-bg">
                                 <!-- <li class="navbar-list-tag"><a class="dropdown-item navbar-list-tag" href="aboutus.php">About US</a></li> -->
-                                <li><a class="dropdown-item navbar-list-tag" href="#">Contact Us</a></li>
-                                <li><a class="dropdown-item navbar-list-tag" href="#">Terms and Conditions</a></li>
+                                <li><a class="dropdown-item navbar-list-tag" href="Contactus.php">Contact Us</a></li>
+                                <li><a class="dropdown-item navbar-list-tag" href="Terms.php">Terms and Conditions</a></li>
                             </ul>
                         </li>
                     </ul>

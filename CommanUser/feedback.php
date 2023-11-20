@@ -180,7 +180,7 @@ if ($result !== false) {
 
                                         $pesseger = new Pessenger(null, null, null, null, null, null, null, null, null);
                                         if ($pesseger->Feedback($email, $feedback)) {
-                                            echo '<div class="alert alert-success">Thank You!!,Your Feedback.</div>';
+                                            echo '<div class="alert alert-success">Thank You For Your Feedback.</div>';
                                         } else {
                                             echo '<div class="alert alert-danger" role="alert">Email is not found in the database..</div>';
                                         }

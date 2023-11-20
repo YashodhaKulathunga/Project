@@ -19,6 +19,7 @@
 
         <title>Dashboard</title>
     </head>
+    
 
     <body>
         <section>
@@ -31,7 +32,8 @@
                         <span>Welcome, Admin!</span>
                     </div>
                 </div>
-            </div>        
+            </div>
+                    
             <div id="sidebar">
                 <div class="pt-5">
                     <ul class="pt-4">
@@ -67,6 +69,29 @@
                                 <h1>Welcome to Journey ease</h1>
                             </div>
                         </div>
+                        <?php
+
+require '../Classes/Pessenger.php';
+
+// Create an instance of the Pessenger class
+$pessenger = new Classes\Pessenger();
+
+// Call the getFeedbacks method to retrieve feedback data
+$feedbacks = $pessenger->getFeedbacks();
+
+// Display the feedback data inside Bootstrap cards
+foreach ($feedbacks as $feedback) {
+    ?>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Email: <?php echo $feedback['Email']; ?></h5>
+            <p class="card-text">Feedback: <?php echo $feedback['Feedback']; ?></p>
+        </div>
+    </div>
+    <br>
+    <?php
+}
+?>
                         <div class="slide-indicators">
                             <span class="indicator"></span>
                             <span class="indicator"></span>
@@ -76,41 +101,10 @@
                 </div>
 
                 <!---profile card--->
-                <div class="row p-4">
-                    <div class="col-md-4 pb-5">
-                        <div class="card shadow text-center custom-card">
-                            <div class="card-body">
-                                <img src="images/Admin/Add_bus.jpg"alt="Image" class="card-image" style="width: 130px;">
-                                <h5 class="card-title">Add Bus</h5>
-                                <p class="card-text">Manage bus here.</p>
-                                <a href="bus_registration.php" class="btn btn-primary">Go to Add Bus</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card shadow text-center custom-card">
-                            <div class="card-body">
-                                <img src="images/Admin/Add_employee.jpg"alt="Image" class="card-image" style="width: 130px;">
-                                <h5 class="card-title">Add Employee</h5>
-                                <p class="card-text">Manage employee here.</p>
-                                <a href="employee_registration.php" class="btn btn-primary">Go to Add Employee</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card shadow text-center custom-card">
-                            <div class="card-body">
-                                <img src="images/Admin/Report.jpg"alt="Image" class="card-image" style="width: 130px;">
-                                <h5 class="card-title">Report Generate</h5>
-                                <p class="card-text">Manage Report Generate here.</p>
-                                <a href="report.php" class="btn btn-primary">Go to Report Genarate</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                
             </div>
         </section>
+        
         <script src="java.js"></script>
     </body>
 
