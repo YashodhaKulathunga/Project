@@ -133,7 +133,7 @@
 
                       $update = new Counductor(null, null, null, null, null, null, null, null, null);
                       if ($update->fuel($Bus_ID, $date, $travel_in_km,  $fuel_in_liter, $expences)) {
-                        echo '<div class="alert alert-success">Updated!!</div>';
+                        echo '<div class="alert alert-success">Fuel expence Added Successfully!!</div>';
                       } else {
                         echo '<div class="alert alert-danger" role="alert">Bus_Id is not found in the database..</div>';
                       }
@@ -152,7 +152,7 @@
                       $item = new Counductor(null, null, null, null, null, null, null, null, null);
                       if ($item->expence($date, $expence_item,  $expence_rp, $Bus_ID)) {
                         //echo '<div class="alert alert-success">Updated!!</div>';
-                        $success = 'Fuel expence Added Successfully';
+                        $success = 'Other expence Added Successfully';
                       } else {
                         //echo '<div class="alert alert-danger" role="alert">Bus_Id is not found in the database..</div>';
                         $errors[] = "Bus_Id is not found in the database.";
