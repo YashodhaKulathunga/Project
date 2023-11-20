@@ -12,7 +12,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     echo ("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT * FROM ticket_reservation WHERE UserID = '$userID' AND Status = 'Booked'";
+$sql = "SELECT * FROM ticket_reservation WHERE UserID = '$userID'";
 
 $result = mysqli_query($conn, $sql);
 
