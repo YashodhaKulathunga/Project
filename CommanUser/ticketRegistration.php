@@ -49,7 +49,7 @@ session_start();
         $currentDate = date('Y-m-d');
         $currentTime = date('H:i:s');
         $reid = 1234;
-        $status = "Unpaid";
+        $status = "Booked";
 
         if ($conn->connect_error) {
             echo ("Connection failed: " . $conn->connect_error);
