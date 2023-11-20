@@ -12,7 +12,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     echo ("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT * FROM ticket_reservation WHERE UserID = '$userID'";
+$sql = "SELECT * FROM ticket_reservation  WHERE UserID = '$userID'";
 
 $result = mysqli_query($conn, $sql);
 
@@ -132,6 +132,7 @@ if (!$result) {
                         <th scope="col">Ticket ID</th>
                         <th scope="col">Seat NO</th>
                         <th scope="col">Download Ticket</th>
+                        <th scope="col">Cancel Ticket</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -140,25 +141,74 @@ if (!$result) {
                         $tid = $row['Ticket_ID'];
                         $sno = $row['SeatNO'];
                         $gender = $row['Gender'];
+                        $rid = $row['RefrenceNO'];
                         $link = 'ticket.php?var1=' . urlencode($tid) . '&var2=' . urlencode($sno) . '&var3=' . urlencode($gender);
+
                         echo '<tr>';
                         echo '<td>' . $row['Ticket_ID'] . '</td>';
                         echo '<td>' . $row['SeatNO'] . '</td>';
-                        echo '<td>
-                        <div class="row">
+                        echo '<td>                        
                         <div class="col">
                             <a href="' . $link . '">
                                 <button type="submit" class="w-100 btn btn-lg btn-find-busses" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="button1">
                                     Download Ticket
                                 </button>
                             </a>
-                        </div>                        
+                        </div> 
+                        </td>';
+                        echo '<td>  
                         <div class="col">
-                            <button type="submit" class="w-50 btn btn-lg btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="button1">
-                                Cancel Ticket
-                            </button>
-                        </div>
-                    </div>
+                        <a href="ticketCancel.php?ref=' . $rid . '">
+                        <button type="submit" class="w-50 btn btn-lg btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="button1">
+                            Cancel Ticket
+                        </button>
+                        </a>
+                        </div>                   
+                            </td>';
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <?php
+
+    $sql2 = "SELECT * FROM ticket_cancellation  WHERE UserID = '$userID'";
+
+    $result2 = mysqli_query($conn, $sql2);
+    if (!$result2) {
+        die("Query failed: " . mysqli_error($conn));
+    }
+    ?>
+
+    <div class="container px-2 pv-2 h-screen items-center w-screen booked-Tickets-Table">
+        <div class="flex flex-center text-center text-white heading mb-2">
+            <h1 style="color: #000032;">Your Cancelled Seats</h1>
+        </div>
+        <div class="text-center mt-4 table-for-tickets">
+            <table class="table text-center table-for-tickets">
+                <thead>
+                    <tr class="table-row-class">
+                        <th scope="col">Ticket ID</th>
+                        <th scope="col">Seat NO</th>
+                        <th scope="col">Repayment Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    while ($row = mysqli_fetch_assoc($result2)) {
+                        $tid = $row['Ticket_ID'];
+                        $sno = $row['SeatNO'];
+                        $gender = $row['Gender'];
+                        $rid = $row['RefrenceNO'];
+                        $link = 'ticket.php?var1=' . urlencode($tid) . '&var2=' . urlencode($sno) . '&var3=' . urlencode($gender);
+
+                        echo '<tr>';
+                        echo '<td>' . $row['Ticket_ID'] . '</td>';
+                        echo '<td>' . $row['SeatNO'] . '</td>';
+                        echo '<td>
+                                    status
                             </td>';
                     }
                     mysqli_close($conn);
@@ -167,6 +217,7 @@ if (!$result) {
             </table>
         </div>
     </div>
+
     <!--Footer Start-->
     <footer class="border-top footerbackground">
         <div class="row">

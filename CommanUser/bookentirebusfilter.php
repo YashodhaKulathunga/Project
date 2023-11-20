@@ -208,17 +208,17 @@ session_start();
 
             // Query to retrieve available buses within the specified date range
             $query = "
-    SELECT b.*
-    FROM buses b
-    LEFT JOIN bookings bk ON b.bus_id = bk.bus_id_fk
-    WHERE (
-        bk.booking_id IS NULL 
-        OR (
-            bk.booking_start_date > '$end_date' 
-            OR bk.booking_end_date < '$start_date'
-        )
-    )
-";
+                        SELECT b.*
+                        FROM buses b
+                        LEFT JOIN bookings bk ON b.bus_id = bk.bus_id_fk
+                        WHERE (
+                        bk.booking_id IS NULL 
+                        OR (
+                        bk.booking_start_date > '$end_date' 
+                        OR bk.booking_end_date < '$start_date'
+                        )
+                        )   
+                        ";
 
             // Execute the query
             $result = mysqli_query($connection, $query);

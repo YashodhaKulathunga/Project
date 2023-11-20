@@ -59,7 +59,7 @@ $userID = $_SESSION["userid"];
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a href="./varifyOTP.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
+                        <a href="./commanUser.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
 
                     </div>
                 </div>
@@ -98,17 +98,7 @@ $userID = $_SESSION["userid"];
                                     Download Ticket
                                 </button>
                             </a>
-                        </div>
-                        <div class="col">
-                            <button type="submit" class="w-100 btn btn-lg btn-find-busses" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="button1">
-                                Track Bus
-                            </button>
-                        </div>
-                        <div class="col">
-                            <button type="submit" class="w-100 btn btn-lg btn-find-busses" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="button1">
-                                Cancel Ticket
-                            </button>
-                        </div>
+                        </div>                       
                     </div>
                             </td>';
                     }
