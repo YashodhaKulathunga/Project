@@ -209,8 +209,8 @@ session_start();
             // Query to retrieve available buses within the specified date range
             $query = "
                         SELECT b.*
-                        FROM buses b
-                        LEFT JOIN bookings bk ON b.bus_id = bk.bus_id_fk
+                        FROM entire_booking_buses b
+                        LEFT JOIN bookings_entire_bus bk ON b.bus_id = bk.bus_id_fk
                         WHERE (
                         bk.booking_id IS NULL 
                         OR (
@@ -232,25 +232,25 @@ session_start();
                     ?>
                         <div class="col-3 mt-2">
                             <div class="text-center ">
-                                <div class="text-center Choose-bus--container rounded-3">
-                                    <h1 class="Heading-in-choose-shedule"><?php echo $row['bus_name']; ?></h1>
+                                <div class="text-center Choose-bus--container rounded-3" style="padding: 10%; width:auto; height:auto;">
+                                    <h1 class=" Heading-in-choose-shedule"><?php echo $row['bus_name']; ?></h1>
 
-                                    <div class="text-center" style="padding: 10%;">
+                                    <div class="text-center">
                                         <div class="text-center">
                                             <div class="row text-center" style="justify-content: center;">
                                                 <img src="./busimages/img01.png" style="height: 9rem; width: 9rem;">
                                             </div>
                                         </div>
 
-                                        <div class="row text-center">
-                                            <div class="detils" style="padding: 3rem;">
-                                                <h1 style="font-size: 1.5rem;">Bus ID: <?php echo $row['bus_id']; ?></h1>
+                                        <div class="row">
+                                            <div class="detils">
+                                                <h1 style="font-size: 1.5rem;">Registration NO: <?php echo $row['bus_reg_no']; ?></h1>
                                                 <h1 style="font-size: 1.5rem;">Bus Name: <?php echo $row['bus_name']; ?></h1>
                                                 <h1 style="font-size: 1.5rem;">Total Seats: <?php echo $row['total_seats']; ?></h1>
                                                 <h1 style="font-size: 1.5rem;">Details</h1>
                                             </div>
                                         </div>
-                                        <div class="row" style="padding: 3rem;">
+                                        <div class="row">
                                             <a href="./checkoutentirebus.php"><button type="button" class="btn button-choose-sear mt-2">Book Bus</button></a>
                                         </div>
                                     </div>
