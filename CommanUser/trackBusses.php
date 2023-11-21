@@ -117,12 +117,98 @@ if (!$result) {
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <ion-icon name="notifications-outline" class="NAVLINKSICON"></ion-icon>
-                        <ion-icon name="person-outline" class="NAVLINKSICON"></ion-icon>
+                        <?php
+                        if (isset($_SESSION["name"])) {
+                            $userID = $_SESSION["userid"];
+                            $sql = "SELECT COUNT(*) AS unread_notifications FROM notification WHERE User_ID = ? AND Status = 'Unseen'";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bind_param("i", $userID);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            $row = $result->fetch_assoc();
+                            $unreadNotifications = $row['unread_notifications'];
+                            if ($unreadNotifications > 0) {
+                                echo '<a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <ion-icon name="notifications-outline" class="NAVLINKSICON" style="position: absolute; margin-left:-2rem;"></ion-icon>
+                                <span class="badge bg-danger" style="position: relative; margin-top: -5rem;">' . $unreadNotifications . '</span>
+                        </a>';
+                            } else {
+                                echo '<a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <ion-icon name="notifications-outline" class="NAVLINKSICON"></ion-icon>
+                        </a>';
+                            }
+                        } else {
+                            echo '<a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <ion-icon name="notifications-outline" class="NAVLINKSICON"></ion-icon>
+                        </a>';
+                        }
+                        ?>
+                        <a href="./profile.php"><ion-icon name="person-outline" class="NAVLINKSICON"></ion-icon></a>
                     </div>
                 </div>
             </div>
         </nav>
+    </div>
+    <div class="row">
+        <div class="modal fade" style="margin-top: 6.5rem; margin-left: 25rem; position: fixed;" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="background-color: #f3c001;">
+                    <div class="modal-body">
+                        <div class="row">
+                            <h3>Unseen Notifications</h3>
+                            <?php
+                            $userID = $_SESSION["userid"]; // Assuming you have stored the user ID in session
+                            $query = "SELECT * FROM notification WHERE User_ID = '$userID' AND Status = 'Unseen'";
+                            $result = mysqli_query($conn, $query);
+
+                            if ($result && mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo '<div class="card mt-1" style="background-color: #000032; color: #f3c001;">
+                                            <div class="card-body">
+                                                ' . $row['message'] . '
+                                            </div>
+                                        </div>';
+                                }
+                            } else {
+                                echo "<p>No unseen notifications</p>";
+                            }
+                            ?>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <h3>Seen Notifications</h3>
+                            <?php
+                            $userID2 = $_SESSION["userid"]; // Assuming you have stored the user ID in session
+                            $query2 = "SELECT * FROM notification WHERE User_ID = '$userID2' AND Status = 'Seen'";
+                            $result = mysqli_query($conn, $query2);
+
+                            if ($result && mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo '<div class="card mt-1" style="background-color: #000032; color: #f3c001;">
+                                            <div class="card-body">
+                                                ' . $row['message'] . '
+                                            </div>
+                                        </div>';
+                                }
+                                $updateQuery = "UPDATE notification SET Status = 'Seen' WHERE User_ID = '$userID' AND Status = 'Unseen'";
+                                $updateResult = mysqli_query($conn, $updateQuery);
+                                if (!$updateResult) {
+                                    echo "Failed to update notification status: " . mysqli_error($conn);
+                                }
+                            } else {
+                                echo "<p>No Seen notifications</p>";
+                            }
+                            ?>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="d-flex justify-content-center align-item-center">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!---Nav bar End-->
 
@@ -142,7 +228,7 @@ if (!$result) {
                 <tbody>
                     <?php
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $shid = $row['Shedule_ID'];                        
+                        $shid = $row['Shedule_ID'];
                         $link = './trackbussingle.php?var1=' . urlencode($shid);
                         echo '<tr>';
                         echo '<td>' . $row['Ticket_ID'] . '</td>';

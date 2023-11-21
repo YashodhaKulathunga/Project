@@ -103,7 +103,7 @@ session_start();
                                 Other Pages
                             </a>
                             <ul class="dropdown-menu dropdown-bg-navbar drop-down-list-bg">
-                                <!-- <li class="navbar-list-tag"><a class="dropdown-item navbar-list-tag" href="aboutus.php">About US</a></li> -->
+
                                 <li><a class="dropdown-item navbar-list-tag" href="Contactus.php">Contact Us</a></li>
                                 <li><a class="dropdown-item navbar-list-tag" href="Terms.php">Terms and Conditions</a></li>
                             </ul>
@@ -263,6 +263,21 @@ session_start();
                                 <option class="bg-select-place" value="colombo">Colombo</option>
                             </select>
                         </div>
+                        <script>
+                            document.getElementById('departure_location').addEventListener('change', function() {
+                                var departureValue = this.value;
+                                var arrivalSelect = document.getElementById('arrival_location');
+                                for (var i = 0; i < arrivalSelect.options.length; i++) {
+                                    arrivalSelect.options[i].disabled = false;
+                                }
+                                for (var i = 0; i < arrivalSelect.options.length; i++) {
+                                    if (arrivalSelect.options[i].value === departureValue) {
+                                        arrivalSelect.options[i].disabled = true;
+                                        arrivalSelect.selectedIndex = 0; // Reset selection
+                                    }
+                                }
+                            });
+                        </script>
                     </div>
                     <div class="row">
                         <div class="col">
@@ -320,7 +335,7 @@ session_start();
 
                             <!--Easy Option Routes Start-->
                             <!--Route No 1 Badulla to Colombo (BTC)-->
-                            <a class="list-group-item list-group-item-action side-navbar-item-find-routes" id="list-dashBoard-list" data-bs-toggle="list" href="#list-dashBoard" role="tab" aria-controls="list-dashBoard" aria-selected="True" tabindex="-1"><span>Badulla to
+                            <a class="list-group-item list-group-item-action side-navbar-item-find-routes" id="list-dashBoard-list" data-bs-toggle="list" href="#list-dashBoard" role="tab" aria-controls="list-dashBoard" aria-selected="true" tabindex="-1"><span>Badulla to
                                     Colombo</span></a>
                             <!--Route No 2 Passara to Colombo(CTB)-->
                             <a class="list-group-item list-group-item-action side-navbar-item-find-routes" id="list-proposal-list" data-bs-toggle="list" href="#list-proposal" role="tab" aria-controls="list-proposal" aria-selected="false"><span>Colombo to Badulla</span></a>
@@ -451,10 +466,10 @@ session_start();
                             foreach ($results as $row) {
                                 echo '<div class="container mt-3 mb-3">';
                         ?>
-                                <?php echo '<div class="p-5 text-center bg-body-tertiary rounded-3">'; ?>
-                                <h1 class="text-body-emphasis">
+                                <?php echo '<div class="p-5 text-center Choose-bus--container rounded-3">'; ?>
+                                <h1 class="Heading-in-choose-shedule">
                                     <?php echo $row['Start_Location']; ?> -
-                                    <?php echo 'Badulla'; ?>
+                                    <?php echo 'Colombo'; ?>
                                 </h1>
 
                                 <div class="text-center">
@@ -476,7 +491,7 @@ session_start();
                                                     </td>
                                                     <td><ion-icon name="arrow-forward"></ion-icon></td>
                                                     <td>
-                                                        <?php echo 'Badullla' ?>
+                                                        <?php echo 'Colombo' ?>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -494,7 +509,10 @@ session_start();
                                             <small>
                                                 <?php echo $row['Date'] ?>
                                             </small>
-                                            <button type="button" class="btn btn-outline-primary mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Choose Seat</button>
+                                            <br />
+                                            <a href="SeatSelection.php?var=<?php echo urlencode($row['Schedule_ID']); ?>"><button type="button" class="btn button-choose-sear mt-2">Choose
+                                                    Seat</button></a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -517,6 +535,15 @@ session_start();
     </div>
     </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var link = document.getElementById("list-dashBoard-list");
+
+            if (link) {
+                link.click();
+            }
+        });
+    </script>
     <div class="text-center mt-4">
         <a href="./bookentirebusfilter.php">
             <button class="w-50 btn btn-lg btn-find-busses" style="height: 5rem;">

@@ -72,12 +72,13 @@
         $departureLocation = $_POST['departure_location'];
         $arrivalLocation = $_POST['arrival_location'];
         $departureDate = $_POST['departure_date'];
-        $sql = "SELECT r.Route_ID, r.Start_Location, r.Destination_Of_Location, s.Date, s.Arrival_Time, s.Departure_Time
-                        FROM route AS r
-                        JOIN schedule AS s ON r.Route_ID = s.Route_ID
-                        WHERE r.Start_Location = ? 
-                        AND r.Destination_Of_Location = ?
-                        AND s.Date = ?";
+        $sql = "SELECT schedule.*, bus.*, route.Start_Location 
+        FROM schedule 
+        INNER JOIN bus ON schedule.Bus_ID = bus.Bus_ID 
+        INNER JOIN route ON schedule.Route_ID = route.Route_ID
+        WHERE route.Start_Location = ?
+        AND route.Destination_Of_Location = ?
+        AND schedule.Date = ?";
         $stmt_CB = $pdo->prepare($sql);
         $stmt_CB->execute([$departureLocation, $arrivalLocation, $departureDate]);
     ?>
@@ -86,35 +87,56 @@
             echo '<div class="container mt-3 mb-3">';
             while ($row = $stmt_CB->fetch(PDO::FETCH_ASSOC)) {
         ?>
-                <?php echo '<div class="p-5 text-center bg-body-secondary rounded-3">'; ?>
-                <h1 class="text-body-emphasis"><?php echo $row['Start_Location']; ?> - <?php echo $row['Destination_Of_Location']; ?></h1>
+                <?php echo '<div class="p-5 text-center Choose-bus--container rounded-3">'; ?>
+                <h1 class="Heading-in-choose-shedule">
+                    <?php echo $row['Start_Location']; ?> -
+                    <?php echo 'Colombo'; ?>
+                </h1>
 
                 <div class="text-center">
                     <div class="row">
                         <div class="col-3">
                             <table>
                                 <tr>
-                                    <th><?php echo $row['Departure_Time']; ?></th>
+                                    <th>
+                                        <?php echo $row['Departure_Time']; ?>
+                                    </th>
                                     <th><ion-icon name="arrow-forward"></ion-icon></th>
-                                    <th><?php echo $row['Arrival_Time']; ?></th>
+                                    <th>
+                                        <?php echo $row['Arrival_Time']; ?>
+                                    </th>
                                 </tr>
                                 <tr>
-                                    <td><?php echo $row['Start_Location']; ?></td>
+                                    <td>
+                                        <?php echo $row['Start_Location']; ?>
+                                    </td>
                                     <td><ion-icon name="arrow-forward"></ion-icon></td>
-                                    <td><?php echo $row['Destination_Of_Location']; ?></td>
+                                    <td>
+                                        <?php echo 'Colombo' ?>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
                         <div class="col-6 text-center">
-                            <h3>Super Luxuary</h3>
-                            <h5>UV NT-3455</h5>
+                            <h3>
+                                <?php echo $row['Type_of_Bus']; ?>
+                            </h3>
+                            <h5>
+                                <?php echo $row['Bus_Registration_Number']; ?>
+                            </h5>
                         </div>
                         <div class="col-3 text-center">
                             <h3 class="ticketPrice">RS. 2000</h3>
-                            <small><?php echo $row['Date'] ?></small>
-                            <button type="button" class="btn btn-outline-primary mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Choose Seat</button>
+                            <small>
+                                <?php echo $row['Date'] ?>
+                            </small>
+                            <br />
+                            <a href="SeatSelection.php?var=<?php echo urlencode($row['Schedule_ID']); ?>"><button type="button" class="btn button-choose-sear mt-2">Choose
+                                    Seat</button></a>
+
                         </div>
                     </div>
+                </div>
                 </div>
                 <?php echo '</div>'; ?>
                 <?php echo '</br>'; ?>
@@ -137,7 +159,7 @@
                     <img class="mb-2" src="images/logo2.jpg" alt="" width="125" height="87">
                 </span>
                 <span>
-                <p style="color: pink;">Make Your Journey Easy</p>
+                    <p style="color: pink;">Make Your Journey Easy</p>
 
                 </span>
                 <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
@@ -176,7 +198,7 @@
             </div>
             <div class="col-6 col-md">
                 <h5 style="color: pink;"">Links</h5>
-                <ul class="list-unstyled text-small">
+                <ul class=" list-unstyled text-small">
                     <li class="mb-1"><a class="nav-link" aria-current="page" href="#">
                             <span class="coustomIcon">
                                 <ion-icon name="home-outline"></ion-icon>
@@ -206,7 +228,7 @@
                             </span>
                         </a>
                     </li>
-                </ul>
+                    </ul>
             </div>
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Policies</h5>
@@ -219,8 +241,7 @@
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Contact us</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext"
-                            href="../contactus/index.php">
+                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext" href="../contactus/index.php">
                             <span class="coustomIcon">
                                 <ion-icon name="location-outline"></ion-icon>
                             </span>
