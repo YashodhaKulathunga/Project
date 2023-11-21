@@ -7,7 +7,7 @@ and open the template in the editor.
     Created on : Aug 31, 2023, 12:52:54 PM
     Author     : cst/20/027
 */
-*{
+/* *{
 
     box-sizing: border-boX; width:auto ;height:auto;
     margin: top;
@@ -66,4 +66,48 @@ form{
  height: 40px;
  width: 200px;
  margin-top:  2rem;
+} */
+/* Reset default margin and padding */
+
+/* Reset default margin and padding */
+body {
+  margin: 0;
+  padding: 0;
 }
+
+/* Base styling for the page */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  color: wheat;
+  font-weight: bold;
+  margin-bottom: 20px; /* Adjust this value to control the space below the body */
+}
+
+/* Background image styling */
+body {
+  background-image: url('./images/PP.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #fff; /* Fallback background color */
+}
+
+/* Primary button styling */
+.btn.btn-primary {
+  background-color: #ff5733;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Hover effect for the primary button */
+.btn.btn-primary:hover {
+  background-color: #d84629;
+}
+
+

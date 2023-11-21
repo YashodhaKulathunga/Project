@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="inputEmail4" class="form-label">Bus Model</label>
                     <input type="text" class="form-control" id="inputmodel" name="Model">
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <label for="inputPassword4" class="form-label">Number of seats</label>
                     <input type="text" id="inputseats" class="form-control" name="seats"/>
                 </div>
