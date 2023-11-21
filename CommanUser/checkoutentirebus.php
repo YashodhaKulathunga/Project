@@ -89,7 +89,7 @@ $amount = 2000 * $count;
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <Button class="packagebtn text-center ">
+                                    <Button class="packagebtn text-center " onclick="calculateAmount(20000)">
                                         <div class="text-center Choose-package--container rounded-3">
                                             <div class="text-center">
                                                 <div class="row mt-0 mb-0"><small>Per a Day</small></div>
@@ -106,7 +106,7 @@ $amount = 2000 * $count;
                                     </Button>
                                 </div>
                                 <div class="col">
-                                    <Button class="packagebtn text-center ">
+                                    <Button class="packagebtn text-center " onclick="calculateAmount(54000)">
                                         <div class="text-center Choose-package--container rounded-3">
                                             <div class="text-center">
                                                 <div class="row mt-0 mb-0"><small>Per a Day</small></div>
@@ -123,7 +123,7 @@ $amount = 2000 * $count;
                                     </Button>
                                 </div>
                                 <div class="col">
-                                    <Button class="packagebtn text-center ">
+                                    <Button class="packagebtn text-center " onclick="calculateAmount(60000)">
                                         <div class="text-center Choose-package--container rounded-3">
                                             <div class="text-center">
                                                 <div class="row mt-0 mb-0"><small>Per a Day</small></div>
@@ -140,7 +140,7 @@ $amount = 2000 * $count;
                                     </Button>
                                 </div>
                                 <div class="col">
-                                    <Button class="packagebtn text-center ">
+                                    <Button class="packagebtn text-center " onclick="calculateAmount(120000)">
                                         <div class="text-center Choose-package--container rounded-3">
                                             <div class="text-center">
                                                 <div class="row mt-0 mb-0"><small>Per a Day</small></div>
@@ -167,13 +167,25 @@ $amount = 2000 * $count;
                             </div>
                             <div class="row">
                                 <div class="text-center" style="padding-left: 20%; padding-right: 20%;">
-                                    <p class="choosePackagestitle">Amount</p>
+                                    <p class="choosePackagestitle" id="displayAmount">Amount</p>
+
                                 </div>
                             </div>
+                            <script>
+                                function calculateAmount(amount) {
+                                    const fortyPercent = amount * 0.4;
+                                    document.getElementById('calculatedAmount').value = fortyPercent;
+                                    console.log("40% of the amount:", fortyPercent);
+                                    document.getElementById('displayAmount').textContent = "40% of the selected package you want to pay is: Rs. " + fortyPercent;
+                                }
+                            </script>
+
                             <div class="text-center mb-4">
                                 <h3>Enter Your Email Address</h3>
                             </div>
-                            <form action="process_payment.php" method="POST">
+
+                            <form action="process_payment_entire_bus.php" method="POST">
+                                <input type="text" id="calculatedAmount" style="display: none;" name="amount" readonly>
                                 <div class="form-outline mb-4">
                                     <input type="text" name="emailadd" class="form-control form-control-lg" placeholder="Email Address" />
                                 </div>
@@ -223,39 +235,42 @@ $amount = 2000 * $count;
     <footer class="border-top footerbackground">
         <div class="row">
             <div class="col-12 col-md ">
-                <span>
-                    <img class="mb-2" src="images/logo2.jpg" alt="" width="125" height="87">
-                </span>
-                <span>
-                <p style="color: pink;">Make Your Journey Easy</p>
+                <div class="row">
+                    <span>
+                        <img class="mb-2" src="./Images/Logo.png" alt="" width="125" height="87">
+                    </span>
+                    <span>
+                        <p style="color: pink;">Make Your Journey Easy</p>
 
-                </span>
-                <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
-                <div class="row ">
+                    </span>
+                    <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
+                </div>
+
+                <div class="row " style="margin-top: -2rem;">
                     <div class="container firstCol">
                         <div class="col">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="https://www.facebook.com">
                                 <span class="coustomIcon SMLF">
                                     <ion-icon name="logo-facebook">
                                 </span>
                             </a>
                         </div>
                         <div class="col">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="https://www.instagram.com">
                                 <span class="coustomIcon SMLI">
                                     <ion-icon name="logo-instagram">
                                 </span>
                             </a>
                         </div>
                         <div class="col">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="https://www.whatsapp.com">
                                 <span class="coustomIcon SMLW">
                                     <ion-icon name="logo-whatsapp">
                                 </span>
                             </a>
                         </div>
                         <div class="col ">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="https://www.twitter.com">
                                 <span class="coustomIcon SMLT">
                                     <ion-icon name="logo-twitter">
                                 </span>
@@ -266,7 +281,7 @@ $amount = 2000 * $count;
             </div>
             <div class="col-6 col-md">
                 <h5 style="color: pink;"">Links</h5>
-                <ul class="list-unstyled text-small">
+                <ul class=" list-unstyled text-small">
                     <li class="mb-1"><a class="nav-link" aria-current="page" href="#">
                             <span class="coustomIcon">
                                 <ion-icon name="home-outline"></ion-icon>
@@ -296,7 +311,7 @@ $amount = 2000 * $count;
                             </span>
                         </a>
                     </li>
-                </ul>
+                    </ul>
             </div>
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Policies</h5>
@@ -309,8 +324,7 @@ $amount = 2000 * $count;
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Contact us</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext"
-                            href="../contactus/index.php">
+                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext" href="../contactus/index.php">
                             <span class="coustomIcon">
                                 <ion-icon name="location-outline"></ion-icon>
                             </span>
