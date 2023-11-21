@@ -71,7 +71,7 @@ if ($stmt) {
     $stmt->bind_param("sssssssssss", $paymentID, $userID, $email, $cardName, $cardNumber, $expMonth, $expYear, $cvv, $amount, $otp, $status);
 
     if ($stmt->execute()) {
-        $_SESSION['payID'] = $paymentID;
+        $_SESSION['payIDEB'] = $paymentID;
         header("Location: varifyOTP_Entire_bus_Booking.php");
     } else {
         echo "Error: " . $stmt->error;
