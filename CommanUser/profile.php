@@ -60,15 +60,20 @@ if ($result !== false) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/profile.css">
     <link rel="stylesheet" href="./css/index.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@100;300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@100;300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap"
+        rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
@@ -95,7 +100,8 @@ if ($result !== false) {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn" style="background-color: #000032; color:#f3c001;" data-bs-dismiss="modal">No Keep me stay</button>
+                    <button type="button" class="btn" style="background-color: #000032; color:#f3c001;"
+                        data-bs-dismiss="modal">No Keep me stay</button>
                     <a href="./logout.php"><button type="button" class="btn btn-danger">Yes Log out me.</button></a>
                 </div>
             </div>
@@ -105,8 +111,10 @@ if ($result !== false) {
     <div class="fixed-top">
         <nav class="navbar navbar-expand-lg NAVBAR">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="./Images/Logo.png" alt="Logo" width="100" height="69" class="d-inline-block align-text-top" /></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="#"><img src="./Images/Logo.png" alt="Logo" width="100" height="69"
+                        class="d-inline-block align-text-top" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarScroll">
@@ -114,19 +122,21 @@ if ($result !== false) {
                         <li class="nav-item align-items-center">
                             <div class="d-flex align-items-center">
                                 <p class="SubPageTitle FIRST-NAVLINK">
-                                    Welcome <?php
-                                            if (isset($_SESSION["name"])) {
-                                                echo $_SESSION["name"];
-                                            } else {
-                                                echo 'user ';
-                                            }
-                                            ?>
+                                    Welcome
+                                    <?php
+                                    if (isset($_SESSION["name"])) {
+                                        echo $_SESSION["name"];
+                                    } else {
+                                        echo 'user ';
+                                    }
+                                    ?>
                                 </p>
                             </div>
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a href="./commanUser.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
+                        <a href="./commanUser.php"><ion-icon name="arrow-back-circle-outline"
+                                class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
                     </div>
                 </div>
             </div>
@@ -140,9 +150,12 @@ if ($result !== false) {
                 <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse sideinavbar-profile-page">
                     <div class="position-sticky">
                         <div class="list-group list-group-flush mt-4 side-navbar-for-find-routes">
-                            <a class="list-group-item list-group-item-action side-navbar-item-profile-page-active" href="./profile.php"><span>Profile</span></a>
-                            <a class="mt-2 list-group-item list-group-item-action side-navbar-item-profile-page" href="./feedback.php"><span>Feedback</span></a>
-                            <a class="mt-2 list-group-item list-group-item-action side-navbar-item-profile-page-logout" data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Log Out</span></a>
+                            <a class="list-group-item list-group-item-action side-navbar-item-profile-page-active"
+                                href="./profile.php"><span>Profile</span></a>
+                            <a class="mt-2 list-group-item list-group-item-action side-navbar-item-profile-page"
+                                href="./feedback.php"><span>Feedback</span></a>
+                            <a class="mt-2 list-group-item list-group-item-action side-navbar-item-profile-page-logout"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal"><span>Log Out</span></a>
                         </div>
                     </div>
                 </nav>
@@ -183,7 +196,8 @@ if ($result !== false) {
                                 <div class="mb-4 row">
                                     <label for="name" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" placeholder=" name" name="name" value="<?php echo $name; ?>">
+                                        <input type="text" class="form-control" id="name" placeholder=" name"
+                                            name="name" value="<?php echo $name; ?>">
                                     </div>
                                 </div>
 
@@ -191,33 +205,39 @@ if ($result !== false) {
                                 <div class="mb-4 row">
                                     <label for="name" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" name="email" placeholder="Email" value="<?php echo $email; ?>">
+                                        <input type="text" class="form-control" id="name" name="email"
+                                            placeholder="Email" value="<?php echo $email; ?>">
                                     </div>
                                 </div>
                                 <div class="mb-4 row">
                                     <label for="phoneNumber" class="col-sm-2 col-form-label">Username</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" value="<?php echo $uid; ?>">
+                                        <input type="text" class="form-control" id="username"
+                                            placeholder="Enter username" name="username" value="<?php echo $uid; ?>">
                                     </div>
 
                                 </div>
                                 <div class="mb-4 row">
                                     <label for="phoneNumber" class="col-sm-2 col-form-label">Phone number</label>
                                     <div class="col-sm-10">
-                                        <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter Phone Number" name="phone_no" value="<?php echo $pno; ?>">
+                                        <input type="tel" class="form-control" id="phoneNumber"
+                                            placeholder="Enter Phone Number" name="phone_no"
+                                            value="<?php echo $pno; ?>">
                                     </div>
 
                                 </div>
                                 <div class="mb-4 row">
                                     <label for="password" class="col-sm-2 col-form-label">Password</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="password" name="password" value="<?php echo $pwd; ?>" placeholder="Enter Password" required>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            value="<?php echo $pwd; ?>" placeholder="Enter Password" required>
                                     </div>
                                 </div>
 
 
                                 <div class="pt-3">
-                                    <button type="submit" class="btn btn-primary update-button" name="update">Update</button>
+                                    <button type="submit" class="btn btn-primary update-button"
+                                        name="update">Update</button>
                                 </div>
                             </form>
 

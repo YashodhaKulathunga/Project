@@ -6,51 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styleabt.css">
     <title>About Us</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-      crossorigin="anonymous"
-    ></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/index.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="./js/index.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body><!--Nav bar start-->
-   
-   <nav class="navbar navbar-expand-lg NAVBAR">
-       <div class="container-fluid">
-           <a class="navbar-brand" href="#"><img src="./Images/Logo.png" alt="Logo" width="100" height="69" class="d-inline-block align-text-top" /></a>
-           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-               <span class="navbar-toggler-icon"></span>
-           </button>
-           <div class="collapse navbar-collapse" id="navbarScroll">
-               <ul class="navbar-nav me-auto d-flex align-items-center" style="--bs-scroll-height: 100px">
-                   <li class="nav-item align-items-center">
-                       <div class="d-flex align-items-center">
-                           <p class="SubPageTitle FIRST-NAVLINK">
-                           About Us
-                           </p>
-                       </div>
-                   </li>
-               </ul>
-               <div class="d-flex">
-                   <a href="./commanUser.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
-               </div>
-           </div>
-       </div>
-   </nav>
 
-<!---Nav bar End-->
-    
+    <nav class="navbar navbar-expand-lg NAVBAR">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="./Images/Logo.png" alt="Logo" width="100" height="69"
+                    class="d-inline-block align-text-top" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto d-flex align-items-center" style="--bs-scroll-height: 100px">
+                    <li class="nav-item align-items-center">
+                        <div class="d-flex align-items-center">
+                            <p class="SubPageTitle FIRST-NAVLINK">
+                                About Us
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="./commanUser.php"><ion-icon name="arrow-back-circle-outline"
+                            class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!---Nav bar End-->
+
     <!--Niwandi Content Start-->
     <div class="heading mt-2">
         <p><b>Our aim is to provide long-distance travelers with the convenience
@@ -63,7 +62,7 @@
                 <img src="about us bus.jpeg" alt="">
             </div>
             <div class="about-content">
-                
+
                 <p>At CityTravels, we are passionate about providing you with a seamless and hassle-free
                     bus ticket booking experience. Our mission is to connect travelers to their desired destinations
                     with comfort, safety, and efficiency. CityTravels is a revolutionary bus ticket booking platform,
@@ -109,42 +108,46 @@
     </div>
     <!--Niwandi content End-->
     <!--Footer Start-->
+    
     <footer class="border-top footerbackground">
         <div class="row">
             <div class="col-12 col-md ">
-                <span>
-                    <img class="mb-2" src="images/logo2.jpg" alt="" width="125" height="87">
-                </span>
-                <span>
-                    <p style="color: pink;">Make Your Journey Easy</p>
+                <div class="row">
+                    <span>
+                        <img class="mb-2" src="./Images/Logo.png" alt="" width="125" height="87">
+                    </span>
+                    <span>
+                        <p style="color: pink;">Make Your Journey Easy</p>
 
-                </span>
-                <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
-                <div class="row ">
+                    </span>
+                    <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
+                </div>
+
+                <div class="row " style="margin-top: -2rem;">
                     <div class="container firstCol">
                         <div class="col">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="https://www.facebook.com">
                                 <span class="coustomIcon SMLF">
                                     <ion-icon name="logo-facebook">
                                 </span>
                             </a>
                         </div>
                         <div class="col">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="https://www.instagram.com">
                                 <span class="coustomIcon SMLI">
                                     <ion-icon name="logo-instagram">
                                 </span>
                             </a>
                         </div>
                         <div class="col">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="https://www.whatsapp.com">
                                 <span class="coustomIcon SMLW">
                                     <ion-icon name="logo-whatsapp">
                                 </span>
                             </a>
                         </div>
                         <div class="col ">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="https://www.twitter.com">
                                 <span class="coustomIcon SMLT">
                                     <ion-icon name="logo-twitter">
                                 </span>
@@ -190,15 +193,19 @@
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Policies</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="privacyPolicy.php">privacy Policy</a></li>
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="Terms.php">Terms & Conditions</a></li>
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="TicketPolicy.php">Ticket Policy</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="privacyPolicy.php">privacy
+                            Policy</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="Terms.php">Terms &
+                            Conditions</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="TicketPolicy.php">Ticket
+                            Policy</a></li>
                 </ul>
             </div>
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Contact us</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext" href="../contactus/index.php">
+                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext"
+                            href="../contactus/index.php">
                             <span class="coustomIcon">
                                 <ion-icon name="location-outline"></ion-icon>
                             </span>
@@ -229,13 +236,15 @@
             </div>
         </div>
     </footer>
+
+    <!--Footer End-->
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#myModal').modal('show');
         });
     </script>
 
-    <!--Footer End-->
+    
 </body>
 
 </html>
