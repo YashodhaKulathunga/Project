@@ -112,7 +112,7 @@
                   border-radius: 5px;
                 ">
               <div class="card-body mb-2">
-                <form action="process_payment.php" method="POST">
+                <form action="<?php echo $_SERVER["PHP_SELF"]; ?> " method="POST">
                   <div class="text-center mb-4">
                     <img class="icon-inside-form" src="./icons/profile-round-1345-svgrepo-com.svg">
                   </div>
@@ -131,8 +131,8 @@
                   </div>
 
                   <div class="text-center mb-4">
-                    <button class="btn-Checkout-form">
-                      Add Expence
+                    <button class="btn-Checkout-form" name="reset">
+                      Reset Password
                     </button>
                   </div>
                 </form>
@@ -145,7 +145,7 @@
         <div class="cidashFooter">
           <div class="row">
             <div class="text-center">
-              <h1 class="titleUsername">Journey Ease</h1>
+              <h1 class="titleUsername">JourneyEase</h1>
             </div>
           </div>
         </div>
