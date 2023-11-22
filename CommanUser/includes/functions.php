@@ -150,7 +150,7 @@ function emptyInputLogin($email, $pwd)
 }
 function LoginUser($conn, $email, $pwd)
 {
-    echo "purna" . $email;
+    
     $uidExist = uidExists($conn, $email, $pwd);
     echo "<pre>";
     print_r($uidExist);

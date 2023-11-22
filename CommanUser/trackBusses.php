@@ -14,9 +14,9 @@ if ($conn->connect_error) {
 }
 $sql = "SELECT * FROM ticket_reservation WHERE UserID = '$userID'";
 
-$result = mysqli_query($conn, $sql);
+$result2 = mysqli_query($conn, $sql);
 
-if (!$result) {
+if (!$result2) {
     die("Query failed: " . mysqli_error($conn));
 }
 ?>
@@ -227,7 +227,7 @@ if (!$result) {
                 </thead>
                 <tbody>
                     <?php
-                    while ($row = mysqli_fetch_assoc($result)) {
+                    while ($row = mysqli_fetch_assoc($result2)) {
                         $shid = $row['Shedule_ID'];
                         $link = './trackbussingle.php?var1=' . urlencode($shid);
                         echo '<tr>';
