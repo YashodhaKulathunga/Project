@@ -282,7 +282,11 @@ $amount = 2000 * $count;
             <div class="col-6 col-md">
                 <h5 style="color: pink;"">Links</h5>
                 <ul class=" list-unstyled text-small">
+<<<<<<< HEAD
                     <li class="mb-1"><a class="nav-link" aria-current="page" href="#">
+=======
+                    <li class="mb-1"><a class="nav-link" aria-current="page" href="commanUser.php">
+>>>>>>> 7607bdb142b1b2237127bf99d53a842233a5b118
                             <span class="coustomIcon">
                                 <ion-icon name="home-outline"></ion-icon>
                             </span>
@@ -316,9 +320,12 @@ $amount = 2000 * $count;
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Policies</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="privacyPolicy.php">privacy Policy</a></li>
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="Terms.php">Terms & Conditions</a></li>
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="TicketPolicy.php">Ticket Policy</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="privacyPolicy.php">privacy
+                            Policy</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="Terms.php">Terms &
+                            Conditions</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="TicketPolicy.php">Ticket
+                            Policy</a></li>
                 </ul>
             </div>
             <div class="col-6 col-md">

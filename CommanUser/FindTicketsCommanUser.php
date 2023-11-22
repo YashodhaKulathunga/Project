@@ -155,39 +155,50 @@
     <footer class="border-top footerbackground">
         <div class="row">
             <div class="col-12 col-md ">
+<<<<<<< HEAD
                 <span>
                     <img class="mb-2" src="images/logo2.jpg" alt="" width="125" height="87">
                 </span>
                 <span>
                     <p style="color: pink;">Make Your Journey Easy</p>
+=======
+                <div class="row">
+                    <span>
+                        <img class="mb-2" src="./Images/Logo.png" alt="" width="125" height="87">
+                    </span>
+                    <span>
+                        <p style="color: pink;">Make Your Journey Easy</p>
+>>>>>>> 7607bdb142b1b2237127bf99d53a842233a5b118
 
-                </span>
-                <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
-                <div class="row ">
+                    </span>
+                    <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
+                </div>
+
+                <div class="row " style="margin-top: -2rem;">
                     <div class="container firstCol">
                         <div class="col">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="https://www.facebook.com">
                                 <span class="coustomIcon SMLF">
                                     <ion-icon name="logo-facebook">
                                 </span>
                             </a>
                         </div>
                         <div class="col">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="https://www.instagram.com">
                                 <span class="coustomIcon SMLI">
                                     <ion-icon name="logo-instagram">
                                 </span>
                             </a>
                         </div>
                         <div class="col">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="https://www.whatsapp.com">
                                 <span class="coustomIcon SMLW">
                                     <ion-icon name="logo-whatsapp">
                                 </span>
                             </a>
                         </div>
                         <div class="col ">
-                            <a class="nav-link" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="https://www.twitter.com">
                                 <span class="coustomIcon SMLT">
                                     <ion-icon name="logo-twitter">
                                 </span>
@@ -199,7 +210,11 @@
             <div class="col-6 col-md">
                 <h5 style="color: pink;"">Links</h5>
                 <ul class=" list-unstyled text-small">
+<<<<<<< HEAD
                     <li class="mb-1"><a class="nav-link" aria-current="page" href="#">
+=======
+                    <li class="mb-1"><a class="nav-link" aria-current="page" href="commanUser.php">
+>>>>>>> 7607bdb142b1b2237127bf99d53a842233a5b118
                             <span class="coustomIcon">
                                 <ion-icon name="home-outline"></ion-icon>
                             </span>
@@ -233,9 +248,12 @@
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Policies</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="privacyPolicy.php">privacy Policy</a></li>
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="Terms.php">Terms & Conditions</a></li>
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="TicketPolicy.php">Ticket Policy</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="privacyPolicy.php">privacy
+                            Policy</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="Terms.php">Terms &
+                            Conditions</a></li>
+                    <li class="mb-1"><a class="link text-decoration-none listtext" href="TicketPolicy.php">Ticket
+                            Policy</a></li>
                 </ul>
             </div>
             <div class="col-6 col-md">
