@@ -14,9 +14,9 @@ if ($conn->connect_error) {
 }
 $sql = "SELECT * FROM ticket_reservation  WHERE UserID = '$userID'";
 
-$result = mysqli_query($conn, $sql);
+$result3 = mysqli_query($conn, $sql);
 
-if (!$result) {
+if (!$result3) {
     die("Query failed: " . mysqli_error($conn));
 }
 ?>
@@ -231,7 +231,7 @@ if (!$result) {
                 </thead>
                 <tbody>
                     <?php
-                    while ($row = mysqli_fetch_assoc($result)) {
+                    while ($row = mysqli_fetch_assoc($result3)) {
                         $tid = $row['Ticket_ID'];
                         $sno = $row['SeatNO'];
                         $gender = $row['Gender'];
